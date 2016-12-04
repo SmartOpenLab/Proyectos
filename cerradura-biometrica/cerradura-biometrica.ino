@@ -106,6 +106,26 @@ bool unsubscribe(){}
 bool control(){}
 bool reset(){}
 bool checkFingerprint(){}
+bool getPassword(int &password){
+  int num_keys = 0;
+  int pass = 0, pass2 = 0;
+  while(num_keys < 4){
+    pass = pass*10;
+    pass += (kpd.waitForKey()-48);
+    num_keys++;
+  }
+  num_keys = 0;
+  while(num_keys < 4){
+    pass2 = pass2*10;
+    pass2 += (kpd.waitForKey()-48);    
+    num_keys++;
+  }
+  if(pass == pass2){
+    password = pass;
+    return true;
+  }
+  return false;
+}
 void showLed(int led_pin, int seconds, char* message){
     #ifdef DEBUG
       Serial.println(message);
