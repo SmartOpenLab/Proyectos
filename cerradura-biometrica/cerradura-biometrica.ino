@@ -131,7 +131,12 @@ uint16_t checkFingerprint(){
   //lee 3 huellas, si falla, encender led rojo y sonar zumbador y pedir clave numerica
 }
 bool isFingerprintControl(){
-  return true;
+  uint16_t finger_id = checkFingerprint();
+  if(finger_id>=0 && finger_id<last_control_id)
+    return true;
+  return false;
+}
+
 uint8_t getFingerImage(){
   unsigned long prev_millis = millis();
   uint8_t num_checks = 0;
