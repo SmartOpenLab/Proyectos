@@ -19,6 +19,7 @@ uint16_t checkFingerprint();
 
 //Define modules
 bool isFingerprintControl();
+uint8_t getFingerImage();
 bool getFingerprint();
 bool getPassword(int &password);
 void showLed(int led_pin, int seconds, char* message);
@@ -131,8 +132,40 @@ uint16_t checkFingerprint(){
 }
 bool isFingerprintControl(){
   return true;
+uint8_t getFingerImage(){
+  unsigned long prev_millis = millis();
+  uint8_t num_checks = 0;
+  uint8_t p;
+  do{
+    do{
+      p = finger.getImage();
+    }while(p != FINGERPRINT_OK && (millis() - prev_millis) <= 3000);
+    if(p != FINGERPRINT_OK)
+      num_checks++;
+  }while(num_checks<3);
+  return p;
 }
-bool getFingerprint(){return true;}
+
+bool getFingerprint(){
+  uint8_t p;
+  if(getFingerImage() == FINGERPRINT_OK){
+    p = finger.image2Tz(1);
+    if (p != FINGERPRINT_OK)  return false;
+    delay(1000);
+    while (p != FINGERPRINT_NOFINGER) {
+      p = finger.getImage();
+    }
+
+    if(getFingerImage() == FINGERPRINT_OK){
+      p = finger.image2Tz(2);
+      if (p != FINGERPRINT_OK)  return false;
+      p = finger.createModel();
+      if(p == FINGERPRINT_OK)
+        return true;
+    }
+  }
+  return false;
+}
 bool getPassword(int &password){
   int num_keys = 0;
   int pass = 0, pass2 = 0;
