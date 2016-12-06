@@ -15,7 +15,7 @@ bool subscribe();
 bool unsubscribe();
 bool control();
 bool reset();
-bool checkFingerprint();
+uint16_t checkFingerprint();
 
 //Define modules
 bool isFingerprintControl();
@@ -105,7 +105,34 @@ bool subscribe(){}
 bool unsubscribe(){}
 bool control(){}
 bool reset(){}
-bool checkFingerprint(){}
+uint16_t checkFingerprint(){
+  unsigned long prev_millis = millis();
+  uint8_t num_checks = 0;
+  uint8_t p;
+  do{
+    do{
+      p = finger.getImage();
+    }while(p != FINGERPRINT_OK && (millis() - prev_millis) <= 3000);
+    if(p != FINGERPRINT_OK)
+      num_checks++;
+  }while(num_checks<3);  
+  
+  if(p == FINGERPRINT_OK){
+    p = finger.image2Tz();
+    if (p != FINGERPRINT_OK)  return -1;
+  
+    p = finger.fingerFastSearch();
+    if (p != FINGERPRINT_OK)  return -1;
+    return finger.fingerID; 
+  }
+  return -1;
+  //Leer huella desde el sensor
+  //lee 3 huellas, si falla, encender led rojo y sonar zumbador y pedir clave numerica
+}
+bool isFingerprintControl(){
+  return true;
+}
+bool getFingerprint(){return true;}
 bool getPassword(int &password){
   int num_keys = 0;
   int pass = 0, pass2 = 0;
