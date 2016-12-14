@@ -102,7 +102,42 @@ void keypadEvent(KeypadEvent eKey){
   }
 }
 
-bool subscribe(){}
+bool subscribe(){//Usar código de colores para los leds
+  int p = -1;
+  #ifdef DEBUG
+    Serial.print("Identifier ");
+    Serial.println(last_id);
+    Serial.println("Waiting for valid finger to enroll");
+  #endif
+
+  if(isFingerprintControl()){
+    showLed(GREEN_LED,1,"Correct Control Fingerprint");
+    if(getFingerprint()){
+      showLed(GREEN_LED,1,"Correct Fingerprint");
+      int password;
+      if(getPassword(password)){
+          finger.storeModel(last_id++);
+          if(p == FINGERPRINT_OK){
+            #ifdef DEBUG
+              Serial.print("Insertada Huella(");
+              Serial.print(last_id-1);
+              Serial.print(",");
+              Serial.print(password);
+              Serial.println(")");
+            #endif
+            //ingresar en array 
+            showLed(GREEN_LED,2,"Insertada huella correctamente");
+          }
+      }
+      else
+        showLed(RED_LED,2, "Error: PASSWORD did not Match");
+    }
+    else
+      showLed(RED_LED,2, "Error: FINGERPRINT did not match");
+  }
+  else
+    showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
+}
 bool unsubscribe(){}
 bool control(){}
 bool reset(){}
