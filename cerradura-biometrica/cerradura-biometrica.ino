@@ -137,8 +137,30 @@ bool subscribe(){//Usar código de colores para los leds
   }
   else
     showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
+bool unsubscribe(){
+  int p = -1;
+  #ifdef DEBUG
+    Serial.print("Identifier ");
+    Serial.println(last_id);
+    Serial.println("Waiting for valid finger to enroll");
+  #endif
+
+  if(isFingerprintControl()){
+    showLed(GREEN_LED,1,"Correct Control Fingerprint");
+    uint16_t finger_id = checkFingerprint();
+    if(finger_id =! -1 && finger_id > num_control_id){
+      p = finger.deleteModelfinger_id);
+      if(p == FINGERPRINT_OK){
+        showLed(GREEN_LED,2,"Finger deleted");
+        //borrar del array
+      }
+    }
+    else
+      showLed(RED_LED,2,"Error: Can not delete a control fingerprint");
+  }
+  else
+    showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
 }
-bool unsubscribe(){}
 bool control(){}
 bool reset(){}
 uint16_t checkFingerprint(){
