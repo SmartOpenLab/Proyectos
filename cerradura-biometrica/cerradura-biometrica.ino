@@ -61,6 +61,9 @@ int num_control_id = 10;
 int last_control_id = 0;
 int last_id = 10;
 
+/**************************** Security Keys *************************************/
+int key_a = 1111;
+int key_b = 2222;
 void setup(){
   Serial.begin(9600);
   kpd.setDebounceTime(50);
@@ -149,7 +152,7 @@ bool unsubscribe(){
     showLed(GREEN_LED,1,"Correct Control Fingerprint");
     uint16_t finger_id = checkFingerprint();
     if(finger_id =! -1 && finger_id > num_control_id){
-      p = finger.deleteModelfinger_id);
+      p = finger.deleteModel(finger_id);
       if(p == FINGERPRINT_OK){
         showLed(GREEN_LED,2,"Finger deleted");
         //borrar del array
@@ -164,16 +167,23 @@ bool unsubscribe(){
 bool control(){}
 bool reset(){}
 uint16_t checkFingerprint(){
-  unsigned long prev_millis = millis();
+  unsigned long prev_millis = 0;
   uint8_t num_checks = 0;
   uint8_t p;
   do{
+    prev_millis = millis();
     do{
       p = finger.getImage();
-    }while(p != FINGERPRINT_OK && (millis() - prev_millis) <= 3000);
-    if(p != FINGERPRINT_OK)
+    }while((p != FINGERPRINT_OK) && ((millis() - prev_millis) <= 3000));
+    if(p != FINGERPRINT_OK){
       num_checks++;
   }while(num_checks<3);  
+      #ifdef DEBUG
+        Serial.print("Check number ");
+        Serial.println(num_checks);
+      #endif
+    }
+  }while(num_checks<3 && p != FINGERPRINT_OK);  
   
   if(p == FINGERPRINT_OK){
     p = finger.image2Tz();
@@ -204,30 +214,36 @@ uint8_t getFingerImage(){
     }while(p != FINGERPRINT_OK && (millis() - prev_millis) <= 3000);
     if(p != FINGERPRINT_OK)
       num_checks++;
-  }while(num_checks<3);
+  }while(num_checks<3 && p != FINGERPRINT_OK);
   return p;
 }
 
 bool getFingerprint(){
   uint8_t p;
+  Serial.println("Finger Obtaining");
   if(getFingerImage() == FINGERPRINT_OK){
+    Serial.println("Paso 1");
     p = finger.image2Tz(1);
     if (p != FINGERPRINT_OK)  return false;
-    delay(1000);
+    showLed(GREEN_LED,1,"First print OK, Remove and put your finger back");
     while (p != FINGERPRINT_NOFINGER) {
       p = finger.getImage();
     }
 
     if(getFingerImage() == FINGERPRINT_OK){
+      Serial.println("Paso 2");
       p = finger.image2Tz(2);
       if (p != FINGERPRINT_OK)  return false;
       p = finger.createModel();
-      if(p == FINGERPRINT_OK)
+      if(p == FINGERPRINT_OK){
+        Serial.println("Paso 3");
         return true;
+      }
     }
   }
   return false;
 }
+
 bool getPassword(int &password){
   int num_keys = 0;
   int pass = 0, pass2 = 0;
