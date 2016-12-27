@@ -164,7 +164,37 @@ bool unsubscribe(){
   else
     showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
 }
-bool control(){}
+
+bool control(){
+  int p = -1;
+  char option = kpd.waitForKey();
+  #ifdef DEBUG
+    Serial.println("Waiting for valid finger");
+  #endif
+  
+  if(option == 'A'){
+      if(getFingerprint()){
+      showLed(GREEN_LED,1,"Correct Fingerprint");
+      int password;
+      if(getPassword(password)){
+        finger.storeModel(control_id++);
+        #ifdef DEBUG
+          Serial.print("Insertada HuellaControl(");
+          Serial.print(control_id-1);
+          Serial.print(",");
+          Serial.print(password);
+          Serial.println(")");
+        #endif
+        showLed(GREEN_LED,2,"Insertada huella de control correctamente");
+      }
+      else
+        showLed(RED_LED,2, "Error: PASSWORD did not Match");
+    }
+    else
+      showLed(RED_LED,2, "Error: FINGERPRINT did not match");
+  }
+}
+
 bool reset(){}
 uint16_t checkFingerprint(){
   unsigned long prev_millis = 0;
