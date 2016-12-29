@@ -143,9 +143,7 @@ bool subscribe(){//Usar código de colores para los leds
 bool unsubscribe(){
   int p = -1;
   #ifdef DEBUG
-    Serial.print("Identifier ");
-    Serial.println(last_id);
-    Serial.println("Waiting for valid finger to enroll");
+    Serial.println("Waiting for valid finger to delete");
   #endif
 
   if(isFingerprintControl()){
