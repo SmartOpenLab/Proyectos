@@ -22,6 +22,7 @@ bool isFingerprintControl();
 uint8_t getFingerImage();
 bool getFingerprint();
 bool getPassword(int &password);
+bool getKeyPass(int &password);
 void showLed(int led_pin, int seconds, char* message);
 
 /**************************** Relay Setup *************************************/
@@ -58,24 +59,67 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial); //Fingerprint var
 
 /**************************** IDs Setup *************************************/
 int num_control_id = 10;
-int last_control_id = 0;
-int last_id = 10;
+int control_id = 0;
+int user_id = 10;
 
 /**************************** Security Keys *************************************/
 int key_a = 1111;
 int key_b = 2222;
+bool get_user_pass = false;
+
 void setup(){
   Serial.begin(9600);
   kpd.setDebounceTime(50);
-  kpd.addEventListener(keypadEvent);
+  //kpd.addEventListener(keypadEvent);
   pinMode(WHITE_LED,OUTPUT);
   pinMode(GREEN_LED,OUTPUT);
   pinMode(RED_LED,OUTPUT);
+  pinMode(RELAY_PIN,OUTPUT);
+  digitalWrite(RELAY_PIN,HIGH);
   finger.begin(57600);
 }
 
 void loop(){
-  kpd.getKey();
+  char op = kpd.waitForKey();
+  if(kpd.getState() == PRESSED){
+    digitalWrite(WHITE_LED,HIGH);
+    switch(op){
+      case 'A':
+        subscribe();
+        break;
+      case 'B':
+        unsubscribe();
+        break;
+      case 'C':
+        control();
+        break;
+      case 'D':
+        reset();
+        break;
+      case '*':
+        checkAccess();
+        break;
+    }
+    digitalWrite(WHITE_LED,LOW);
+  }
+  if(get_user_pass){
+    int user_pass = 0;
+    if(getPassword(user_pass)){//OK TODO Fallaba en la obtención del pass // Es por el anidamiento, no se puede tanto
+      finger.storeModel(user_id);
+      #ifdef DEBUG
+        Serial.print("Added Fingerprint(");
+        Serial.print(user_id);
+        Serial.print(",");
+        Serial.print(user_pass);
+        Serial.println(")");
+      #endif
+      user_id++;
+      showLed(GREEN_LED,2,"Fingerprint Added correctly");
+    }
+    else
+      showLed(RED_LED,2, "Error: PASSWORD did not Match");
+    get_user_pass = false;
+  }
 }
 
 void keypadEvent(KeypadEvent eKey){
@@ -105,35 +149,29 @@ void keypadEvent(KeypadEvent eKey){
   }
 }
 
-bool subscribe(){//Usar código de colores para los leds
-  int p = -1;
-  #ifdef DEBUG
-    Serial.print("Identifier ");
-    Serial.println(last_id);
-    Serial.println("Waiting for valid finger to enroll");
-  #endif
+bool subscribe(){
+  int pass_a = 0;
+  int pass_b = 0;
+  int user_pass = 0;
 
-  if(isFingerprintControl()){
-    showLed(GREEN_LED,1,"Correct Control Fingerprint");
+  if(control_id == 0 || isFingerprintControl()){
+    if(control_id == 0){
+      if(getKeyPass(pass_a) && getKeyPass(pass_b) && pass_a == key_a && pass_b == key_b)
+        showLed(GREEN_LED,1,"Correct passwords");
+      else{
+        showLed(RED_LED,1,"Error: Master passwords did not match");
+        return false;
+      }
+    }
+    else
+      showLed(GREEN_LED,1,"Correct Control Fingerprint");
+
+    #ifdef DEBUG
+      Serial.println("Waiting for valid finger to enroll");
+    #endif
     if(getFingerprint()){
       showLed(GREEN_LED,1,"Correct Fingerprint");
-      int password;
-      if(getPassword(password)){
-          finger.storeModel(last_id++);
-          if(p == FINGERPRINT_OK){
-            #ifdef DEBUG
-              Serial.print("Insertada Huella(");
-              Serial.print(last_id-1);
-              Serial.print(",");
-              Serial.print(password);
-              Serial.println(")");
-            #endif
-            //ingresar en array 
-            showLed(GREEN_LED,2,"Insertada huella correctamente");
-          }
-      }
-      else
-        showLed(RED_LED,2, "Error: PASSWORD did not Match");
+      get_user_pass = true;
     }
     else
       showLed(RED_LED,2, "Error: FINGERPRINT did not match");
@@ -205,7 +243,6 @@ uint16_t checkFingerprint(){
     }while((p != FINGERPRINT_OK) && ((millis() - prev_millis) <= 3000));
     if(p != FINGERPRINT_OK){
       num_checks++;
-  }while(num_checks<3);  
       #ifdef DEBUG
         Serial.print("Check number ");
         Serial.println(num_checks);
@@ -227,7 +264,7 @@ uint16_t checkFingerprint(){
 }
 bool isFingerprintControl(){
   uint16_t finger_id = checkFingerprint();
-  if(finger_id>=0 && finger_id<last_control_id)
+  if(finger_id>=0 && finger_id<control_id)
     return true;
   return false;
 }
@@ -273,24 +310,31 @@ bool getFingerprint(){
 }
 
 bool getPassword(int &password){
-  int num_keys = 0;
   int pass = 0, pass2 = 0;
-  while(num_keys < 4){
-    pass = pass*10;
-    pass += (kpd.waitForKey()-48);
-    num_keys++;
-  }
-  num_keys = 0;
-  while(num_keys < 4){
-    pass2 = pass2*10;
-    pass2 += (kpd.waitForKey()-48);    
-    num_keys++;
-  }
-  if(pass == pass2){
+  if(getKeyPass(pass) && getKeyPass(pass2) && pass == pass2){
     password = pass;
     return true;
   }
   return false;
+}
+
+bool getKeyPass(int &password){
+  int num_keys = 0;
+  int pass = 0;
+  char key = 0;
+  while(num_keys < 4){
+    key = kpd.waitForKey();
+    if(key < 48 && key > 57)
+      return false;
+    pass = pass*10;
+    pass += (key-48);
+    num_keys++;
+  }
+  password = pass;
+  return true;
+}
+  }
+  }
 }
 void showLed(int led_pin, int seconds, char* message){
     #ifdef DEBUG
@@ -300,4 +344,3 @@ void showLed(int led_pin, int seconds, char* message){
     delay(seconds*1000);
     digitalWrite(led_pin,LOW);
 }
-
