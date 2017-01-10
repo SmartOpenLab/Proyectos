@@ -23,10 +23,11 @@ uint8_t getFingerImage();
 bool getFingerprint();
 bool getPassword(int &password);
 bool getKeyPass(int &password);
+void checkAccess();
 void showLed(int led_pin, int seconds, char* message);
 
 /**************************** Relay Setup *************************************/
-#define RELAY_PIN 10 //Relay to lock frame
+#define RELAY_PIN A3 //Relay to lock frame
 
 /**************************** LEDs Setup *************************************/
 #define WHITE_LED A0 //White Led for activity
@@ -53,7 +54,7 @@ Keypad kpd = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS); //Keypad va
 /************************** Fingerprint Setup *************************************/
 // IN from sensor (GREEN wire to pin 11)
 // OUT from arduino  (WHITE wire to pin 12)
-SoftwareSerial mySerial(11, 12); //TTL Serial to communicate with fingerprint sensor
+SoftwareSerial mySerial(10, 11); //TTL Serial to communicate with fingerprint sensor
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial); //Fingerprint variable
 
@@ -333,9 +334,19 @@ bool getKeyPass(int &password){
   password = pass;
   return true;
 }
+
+void checkAccess(){
+  uint16_t id = checkFingerprint();
+  if(id != -1){
+    digitalWrite(RELAY_PIN,LOW);
+    showLed(GREEN_LED,3,"Access Allowed");
+    digitalWrite(RELAY_PIN,HIGH);
   }
+  else{
+    showLed(RED_LED,3,"Access Denied");
   }
 }
+
 void showLed(int led_pin, int seconds, char* message){
     #ifdef DEBUG
       Serial.println(message);
