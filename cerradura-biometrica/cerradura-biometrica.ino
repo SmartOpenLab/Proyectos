@@ -9,6 +9,7 @@
 
 #include <Keypad.h>
 #include <Adafruit_Fingerprint.h>
+#include "U8glib.h"
 
 //Define main modules
 bool subscribe();
@@ -25,6 +26,7 @@ bool getPassword(int &password);
 bool getKeyPass(int &password);
 void checkAccess();
 void showLed(int led_pin, int seconds, char* message);
+void draw(char* m);
 
 /**************************** Relay Setup *************************************/
 #define RELAY_PIN A3 //Relay to lock frame
@@ -33,6 +35,10 @@ void showLed(int led_pin, int seconds, char* message);
 #define WHITE_LED A0 //White Led for activity
 #define GREEN_LED A1 //Red led for errors
 #define RED_LED A2 //Green led for pass
+
+/**************************** OLED Setup *************************************/
+U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NO_ACK);
+
 
 /************************** Keypad Setup *************************************/
 const byte ROWS = 4; //Number of rows
@@ -78,6 +84,8 @@ void setup(){
   pinMode(RELAY_PIN,OUTPUT);
   digitalWrite(RELAY_PIN,HIGH);
   finger.begin(57600);
+  u8g.setFont(u8g_font_unifont);
+  u8g.setColorIndex(1);
 }
 
 void loop(){
@@ -351,7 +359,27 @@ void showLed(int led_pin, int seconds, char* message){
     #ifdef DEBUG
       Serial.println(message);
     #endif
+    u8g.firstPage();
+    do {  
+      draw(message);
+    } while( u8g.nextPage() );
     digitalWrite(led_pin,HIGH);
     delay(seconds*1000);
+    u8g.firstPage();
+    while( u8g.nextPage() );
     digitalWrite(led_pin,LOW);
+}
+
+void draw(char* m){
+  int i = 0;
+  char message[51] = "";
+  strcpy(message,m);
+  char message2[17] = "";
+  while(strlen(message) > 16){
+    strncpy(message2,message,16);
+    strcpy(message,message+16);
+    u8g.drawStr( 0, 15+i, message2);    
+    i = i + 15;
+  }
+  u8g.drawStr( 0, 15+i, message);
 }
