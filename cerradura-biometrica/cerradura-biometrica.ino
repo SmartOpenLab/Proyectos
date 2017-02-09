@@ -187,6 +187,7 @@ bool subscribe(){
   }
   else
     showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
+}
 bool unsubscribe(){
   int p = -1;
   #ifdef DEBUG
