@@ -113,20 +113,19 @@ void loop(){
   }
   if(get_user_pass){
     int user_pass = 0;
-    if(getPassword(user_pass)){//OK TODO Fallaba en la obtención del pass // Es por el anidamiento, no se puede tanto
+    if(getPassword(user_pass)){
       finger.storeModel(user_id);
       #ifdef DEBUG
-        Serial.print("Added Fingerprint(");
+        Serial.print("Añadido Usuario(");
         Serial.print(user_id);
         Serial.print(",");
         Serial.print(user_pass);
         Serial.println(")");
       #endif
       user_id++;
-      showLed(GREEN_LED,2,"Fingerprint Added correctly");
+      //ingresar en array 
+      showLed(GREEN_LED,2,"Usuario Añadido Correctamente");
     }
-    else
-      showLed(RED_LED,2, "Error: PASSWORD did not Match");
     get_user_pass = false;
   }
 }
@@ -166,49 +165,48 @@ bool subscribe(){
   if(control_id == 0 || isFingerprintControl()){
     if(control_id == 0){
       if(getKeyPass(pass_a) && getKeyPass(pass_b) && pass_a == key_a && pass_b == key_b)
-        showLed(GREEN_LED,1,"Correct passwords");
+        showLed(GREEN_LED,1,"Contraseñas Maestras Correctas");
       else{
-        showLed(RED_LED,1,"Error: Master passwords did not match");
+        showLed(RED_LED,1,"Error: Las Contraseñas Maestras no coinciden");
         return false;
       }
     }
     else
-      showLed(GREEN_LED,1,"Correct Control Fingerprint");
+      showLed(GREEN_LED,1,"Huella de control Correcta");
 
     #ifdef DEBUG
-      Serial.println("Waiting for valid finger to enroll");
+      Serial.println("Esperando por una huella");
     #endif
     if(getFingerprint()){
-      showLed(GREEN_LED,1,"Correct Fingerprint");
+      showLed(GREEN_LED,1,"Huella Correcta");
       get_user_pass = true;
     }
     else
-      showLed(RED_LED,2, "Error: FINGERPRINT did not match");
+      showLed(RED_LED,2, "Error: Las huellas no coinciden");
   }
   else
-    showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
-}
+    showLed(RED_LED,5, "Error: No es huella de control");
 bool unsubscribe(){
   int p = -1;
   #ifdef DEBUG
-    Serial.println("Waiting for valid finger to delete");
+    Serial.println("Esperando huella para borrar");
   #endif
 
   if(isFingerprintControl()){
-    showLed(GREEN_LED,1,"Correct Control Fingerprint");
+    showLed(GREEN_LED,1,"Huella de control Correcta");
     uint16_t finger_id = checkFingerprint();
     if(finger_id =! -1 && finger_id > num_control_id){
       p = finger.deleteModel(finger_id);
       if(p == FINGERPRINT_OK){
-        showLed(GREEN_LED,2,"Finger deleted");
+        showLed(GREEN_LED,2,"Usuario Borrado");
         //borrar del array
       }
     }
     else
-      showLed(RED_LED,2,"Error: Can not delete a control fingerprint");
+      showLed(RED_LED,2,"ERROR: No se puede borrar una huella de control");
   }
   else
-    showLed(RED_LED,5, "Error: No CONTROL Fingerprint");
+    showLed(RED_LED,5, "ERROR: No es huella de control");
 }
 
 bool control(){
@@ -295,12 +293,12 @@ uint8_t getFingerImage(){
 
 bool getFingerprint(){
   uint8_t p;
-  Serial.println("Finger Obtaining");
+  showLed(GREEN_LED,4,"Pon el dedo en el sensor");
   if(getFingerImage() == FINGERPRINT_OK){
     Serial.println("Paso 1");
     p = finger.image2Tz(1);
     if (p != FINGERPRINT_OK)  return false;
-    showLed(GREEN_LED,1,"First print OK, Remove and put your finger back");
+    showLed(GREEN_LED,4,"Huella correcta, quita y vuelve a poner el dedo");
     while (p != FINGERPRINT_NOFINGER) {
       p = finger.getImage();
     }
@@ -348,11 +346,11 @@ void checkAccess(){
   uint16_t id = checkFingerprint();
   if(id != -1){
     digitalWrite(RELAY_PIN,LOW);
-    showLed(GREEN_LED,3,"Access Allowed");
+    showLed(GREEN_LED,3,"Acceso Permitido");
     digitalWrite(RELAY_PIN,HIGH);
   }
   else{
-    showLed(RED_LED,3,"Access Denied");
+    showLed(RED_LED,3,"Acceso Denegado");
   }
 }
 
