@@ -58,8 +58,8 @@ byte colPins[COLS] = {6, 7, 8, 9}; //connect to the column pinouts of the kpd
 Keypad kpd = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS); //Keypad variable
 
 /************************** Fingerprint Setup *************************************/
-// IN from sensor (GREEN wire to pin 11)
-// OUT from arduino  (WHITE wire to pin 12)
+// IN from sensor (YELLOW wire to pin 10)
+// OUT from arduino  (WHITE wire to pin 11)
 SoftwareSerial mySerial(10, 11); //TTL Serial to communicate with fingerprint sensor
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial); //Fingerprint variable
@@ -77,7 +77,6 @@ bool get_user_pass = false;
 void setup(){
   Serial.begin(9600);
   kpd.setDebounceTime(50);
-  //kpd.addEventListener(keypadEvent);
   pinMode(WHITE_LED,OUTPUT);
   pinMode(GREEN_LED,OUTPUT);
   pinMode(RED_LED,OUTPUT);
@@ -127,33 +126,6 @@ void loop(){
       showLed(GREEN_LED,2,"Usuario Añadido Correctamente");
     }
     get_user_pass = false;
-  }
-}
-
-void keypadEvent(KeypadEvent eKey){
-  if(kpd.getState() == PRESSED){
-    digitalWrite(WHITE_LED,HIGH);
-    #ifdef DEBUG
-      Serial.println(eKey);
-    #endif
-    switch(eKey){
-      case 'A':
-        subscribe();
-        break;
-      case 'B':
-        unsubscribe();
-        break;
-      case 'C':
-        control();
-        break;
-      case 'D':
-        reset();
-        break;
-      case '*':
-        checkFingerprint();
-        break;
-    }
-    digitalWrite(WHITE_LED,LOW);
   }
 }
 
@@ -319,10 +291,23 @@ bool getFingerprint(){
 
 bool getPassword(int &password){
   int pass = 0, pass2 = 0;
-  if(getKeyPass(pass) && getKeyPass(pass2) && pass == pass2){
-    password = pass;
-    return true;
+  showLed(WHITE_LED,3,"Inserta una contraseña");
+  if(getKeyPass(pass)){
+    showLed(GREEN_LED,3,"Repite la contraseña");
+    if(getKeyPass(pass2)){
+      if(pass == pass2){
+        password = pass;
+        showLed(GREEN_LED,3,"Las contraseñas son iguales");
+        return true;
+      }
+      else
+          showLed(RED_LED,3,"ERROR: Las contraseñas no coinciden");
+    }
+    else
+      showLed(RED_LED,3,"ERROR: Fallo al insertar contraseña");
   }
+  else
+    showLed(RED_LED,3,"ERROR: Fallo al insertar contraseña");
   return false;
 }
 
