@@ -133,22 +133,20 @@ bool subscribe(){
   int pass_a = 0;
   int pass_b = 0;
   int user_pass = 0;
-
+  
+  showLed(WHITE_LED,1,"Introduzca una huella de control");
   if(control_id == 0 || isFingerprintControl()){
     if(control_id == 0){
       if(getKeyPass(pass_a) && getKeyPass(pass_b) && pass_a == key_a && pass_b == key_b)
-        showLed(GREEN_LED,1,"Contraseñas Maestras Correctas");
+        showLed(GREEN_LED,1,"Claves Maestras Correctas");
       else{
-        showLed(RED_LED,1,"Error: Las Contraseñas Maestras no coinciden");
+        showLed(RED_LED,1,"Error: Las Claves Maestras no coinciden");
         return false;
       }
     }
     else
       showLed(GREEN_LED,1,"Huella de control Correcta");
 
-    #ifdef DEBUG
-      Serial.println("Esperando por una huella");
-    #endif
     if(getFingerprint()){
       showLed(GREEN_LED,1,"Huella Correcta");
       get_user_pass = true;
@@ -291,23 +289,23 @@ bool getFingerprint(){
 
 bool getPassword(int &password){
   int pass = 0, pass2 = 0;
-  showLed(WHITE_LED,3,"Inserta una contraseña");
+  showLed(WHITE_LED,3,"Inserta una Clave");
   if(getKeyPass(pass)){
-    showLed(GREEN_LED,3,"Repite la contraseña");
+    showLed(GREEN_LED,3,"Repite la Clave");
     if(getKeyPass(pass2)){
       if(pass == pass2){
         password = pass;
-        showLed(GREEN_LED,3,"Las contraseñas son iguales");
+        showLed(GREEN_LED,3,"Las Claves son iguales");
         return true;
       }
       else
-          showLed(RED_LED,3,"ERROR: Las contraseñas no coinciden");
+          showLed(RED_LED,3,"ERROR: Las Claves no coinciden");
     }
     else
-      showLed(RED_LED,3,"ERROR: Fallo al insertar contraseña");
+      showLed(RED_LED,3,"ERROR: Fallo al insertar Clave");
   }
   else
-    showLed(RED_LED,3,"ERROR: Fallo al insertar contraseña");
+    showLed(RED_LED,3,"ERROR: Fallo al insertar Clave");
   return false;
 }
 
