@@ -149,8 +149,19 @@ bool reset(){
     showLed(WHITE_LED,1,"Primera huella  de control");
     if(isFingerControl()){
       showLed(WHITE_LED,1,"Segunda huella  de control");
-      if(isFingerControl()){
+      if(isFingerControl())
         factoryReset();
+    }
+  }
+  else{
+    if(op == '2'){
+      showLed(GREEN_LED,3,"Inserta la      primera clave");
+      int16_t pass = getPassword();
+      if(pass == key_a){
+        showLed(GREEN_LED,3,"Inserta la      segunda clave");
+        pass = getPassword();
+        if(pass == key_b)
+          factoryReset();
       }
     }
   }
