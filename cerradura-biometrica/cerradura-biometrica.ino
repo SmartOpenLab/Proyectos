@@ -25,6 +25,7 @@ int checkFingerID();
 bool isFingerControl();
 int16_t getPassword();
 int16_t checkPassword();
+void factoryReset();
 
 void showLed(int led_pin, int seconds, char* message);
 void draw(char* m);
@@ -141,7 +142,19 @@ bool subscribe(){
 }
 bool unsubscribe(){}
 bool control(){}
-bool reset(){}
+bool reset(){
+  showLed(GREEN_LED,5,"Identificar por 1)Huella        2)Clave Maestra");
+  char op = kpd.waitForKey();
+  if(op == '1'){
+    showLed(WHITE_LED,1,"Primera huella  de control");
+    if(isFingerControl()){
+      showLed(WHITE_LED,1,"Segunda huella  de control");
+      if(isFingerControl()){
+        factoryReset();
+      }
+    }
+  }
+}
 
 uint8_t getFingerImage(){
   uint8_t p = -1;
@@ -245,6 +258,27 @@ void checkAccess(){
   }
   else
     showLed(RED_LED,3,"Acceso Denegado");
+}
+
+void factoryReset(){
+  char op = 0;
+  showLed(GREEN_LED,2,"Desea restaurar de fabrica?     1)SI    2)NO");
+  op = kpd.waitForKey();
+  if(op == '1'){
+    int i = 0;
+    while(i<161){
+      if(finger.deleteModel(i) == FINGERPRINT_OK){
+        #ifdef DEBUG
+          Serial.print("Borrado Usuario: ");
+          Serial.println(i);
+        #endif
+        i++;
+      }
+    }
+    showLed(GREEN_LED,3,"Restauracion    Completada");
+  }
+  else
+    showLed(RED_LED,3,"Borrado         Cancelado");
 }
 
 void showLed(int led_pin, int seconds, char* message){
