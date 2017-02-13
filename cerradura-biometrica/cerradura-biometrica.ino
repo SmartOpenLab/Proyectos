@@ -16,15 +16,16 @@ bool subscribe();
 bool unsubscribe();
 bool control();
 bool reset();
-uint16_t checkFingerprint();
+void checkAccess();
 
 //Define modules
-bool isFingerprintControl();
 uint8_t getFingerImage();
-bool getFingerprint();
-bool getPassword(int &password);
-bool getKeyPass(int &password);
-void checkAccess();
+bool getFingerPrint();
+int checkFingerID();
+bool isFingerControl();
+int16_t getPassword();
+int16_t checkPassword();
+
 void showLed(int led_pin, int seconds, char* message);
 void draw(char* m);
 
@@ -72,7 +73,6 @@ int user_id = 10;
 /**************************** Security Keys *************************************/
 int key_a = 1111;
 int key_b = 2222;
-bool get_user_pass = false;
 
 void setup(){
   Serial.begin(9600);
@@ -110,231 +110,141 @@ void loop(){
     }
     digitalWrite(WHITE_LED,LOW);
   }
-  if(get_user_pass){
-    int user_pass = 0;
-    if(getPassword(user_pass)){
-      finger.storeModel(user_id);
-      #ifdef DEBUG
-        Serial.print("Añadido Usuario(");
-        Serial.print(user_id);
-        Serial.print(",");
-        Serial.print(user_pass);
-        Serial.println(")");
-      #endif
-      user_id++;
-      //ingresar en array 
-      showLed(GREEN_LED,2,"Usuario Añadido Correctamente");
-    }
-    get_user_pass = false;
-  }
 }
 
 bool subscribe(){
-  int pass_a = 0;
-  int pass_b = 0;
-  int user_pass = 0;
+  unsigned int user_pass = 0;
   
   showLed(WHITE_LED,1,"Introduzca una huella de control");
-  if(control_id == 0 || isFingerprintControl()){
-    if(control_id == 0){
-      if(getKeyPass(pass_a) && getKeyPass(pass_b) && pass_a == key_a && pass_b == key_b)
-        showLed(GREEN_LED,1,"Claves Maestras Correctas");
-      else{
-        showLed(RED_LED,1,"Error: Las Claves Maestras no coinciden");
-        return false;
-      }
-    }
-    else
-      showLed(GREEN_LED,1,"Huella de control Correcta");
-
-    if(getFingerprint()){
+  if(isFingerControl()){
+    if(getFingerPrint()){
       showLed(GREEN_LED,1,"Huella Correcta");
-      get_user_pass = true;
+      user_pass = checkPassword();
+      if(user_pass != -1){
+        finger.storeModel(user_id);
+        #ifdef DEBUG 
+          Serial.print("Añadido Usuario("); 
+          Serial.print(user_id); 
+          Serial.print(","); 
+          Serial.print(user_pass); 
+          Serial.println(")"); 
+        #endif
+        user_id++;
+        showLed(GREEN_LED,2,"Usuario agregado");
+      }
     }
     else
       showLed(RED_LED,2, "Error: Las huellas no coinciden");
   }
   else
     showLed(RED_LED,5, "Error: No es huella de control");
-bool unsubscribe(){
-  int p = -1;
-  #ifdef DEBUG
-    Serial.println("Esperando huella para borrar");
-  #endif
-
-  if(isFingerprintControl()){
-    showLed(GREEN_LED,1,"Huella de control Correcta");
-    uint16_t finger_id = checkFingerprint();
-    if(finger_id =! -1 && finger_id > num_control_id){
-      p = finger.deleteModel(finger_id);
-      if(p == FINGERPRINT_OK){
-        showLed(GREEN_LED,2,"Usuario Borrado");
-        //borrar del array
-      }
-    }
-    else
-      showLed(RED_LED,2,"ERROR: No se puede borrar una huella de control");
-  }
-  else
-    showLed(RED_LED,5, "ERROR: No es huella de control");
 }
-
-bool control(){
-  int p = -1;
-  char option = kpd.waitForKey();
-  #ifdef DEBUG
-    Serial.println("Waiting for valid finger");
-  #endif
-  
-  if(option == 'A'){
-      if(getFingerprint()){
-      showLed(GREEN_LED,1,"Correct Fingerprint");
-      int password;
-      if(getPassword(password)){
-        finger.storeModel(control_id++);
-        #ifdef DEBUG
-          Serial.print("Insertada HuellaControl(");
-          Serial.print(control_id-1);
-          Serial.print(",");
-          Serial.print(password);
-          Serial.println(")");
-        #endif
-        showLed(GREEN_LED,2,"Insertada huella de control correctamente");
-      }
-      else
-        showLed(RED_LED,2, "Error: PASSWORD did not Match");
-    }
-    else
-      showLed(RED_LED,2, "Error: FINGERPRINT did not match");
-  }
-}
-
+bool unsubscribe(){}
+bool control(){}
 bool reset(){}
-uint16_t checkFingerprint(){
-  unsigned long prev_millis = 0;
-  uint8_t num_checks = 0;
-  uint8_t p;
+
+uint8_t getFingerImage(){
+  uint8_t p = -1;
+  uint8_t check = 0;
   do{
-    prev_millis = millis();
+    unsigned long prev_millis = millis();
     do{
       p = finger.getImage();
-    }while((p != FINGERPRINT_OK) && ((millis() - prev_millis) <= 3000));
-    if(p != FINGERPRINT_OK){
-      num_checks++;
-      #ifdef DEBUG
-        Serial.print("Check number ");
-        Serial.println(num_checks);
-      #endif
-    }
-  }while(num_checks<3 && p != FINGERPRINT_OK);  
-  
-  if(p == FINGERPRINT_OK){
-    p = finger.image2Tz();
-    if (p != FINGERPRINT_OK)  return -1;
-  
-    p = finger.fingerFastSearch();
-    if (p != FINGERPRINT_OK)  return -1;
-    return finger.fingerID; 
-  }
-  return -1;
-  //Leer huella desde el sensor
-  //lee 3 huellas, si falla, encender led rojo y sonar zumbador y pedir clave numerica
+    }while(p != FINGERPRINT_OK && (millis() - prev_millis) < 3000);
+    check++;
+  }while(p != FINGERPRINT_OK && check < 3);
+  return p;
 }
-bool isFingerprintControl(){
-  uint16_t finger_id = checkFingerprint();
-  if(finger_id>=0 && finger_id<control_id)
+
+bool getFingerPrint(){
+  uint8_t p;
+  showLed(GREEN_LED,4,"Pon el dedo en el sensor");
+  p = getFingerImage();
+  if(p == FINGERPRINT_OK){
+    p = finger.image2Tz(1);
+    if(p != FINGERPRINT_OK) return false;
+    showLed(GREEN_LED,2,"Huella correcta, retira el dedo");
+    while(finger.getImage() != FINGERPRINT_NOFINGER);
+    showLed(GREEN_LED,4,"Vuelve a poner el dedo");
+    p = getFingerImage();
+    if(p == FINGERPRINT_OK){
+      p = finger.image2Tz(2);
+      if(p != FINGERPRINT_OK) return false;
+      p = finger.createModel();
+      if(p == FINGERPRINT_OK) return true;
+    }
+  }
+  return false;
+}
+
+int checkFingerID(){
+  uint8_t p;
+  p = getFingerImage();
+  if(p != FINGERPRINT_OK) return -1;
+  p = finger.image2Tz();
+  if(p != FINGERPRINT_OK) return -1;
+  p = finger.fingerFastSearch();
+  if(p != FINGERPRINT_OK) return -1;
+  return finger.fingerID;
+}
+
+bool isFingerControl(){
+  int finger_id = checkFingerID();
+  if(finger_id >= 0 && finger_id < control_id)
     return true;
   return false;
 }
 
-uint8_t getFingerImage(){
-  unsigned long prev_millis = millis();
-  uint8_t num_checks = 0;
-  uint8_t p;
-  do{
-    do{
-      p = finger.getImage();
-    }while(p != FINGERPRINT_OK && (millis() - prev_millis) <= 3000);
-    if(p != FINGERPRINT_OK)
-      num_checks++;
-  }while(num_checks<3 && p != FINGERPRINT_OK);
-  return p;
-}
-
-bool getFingerprint(){
-  uint8_t p;
-  showLed(GREEN_LED,4,"Pon el dedo en el sensor");
-  if(getFingerImage() == FINGERPRINT_OK){
-    Serial.println("Paso 1");
-    p = finger.image2Tz(1);
-    if (p != FINGERPRINT_OK)  return false;
-    showLed(GREEN_LED,4,"Huella correcta, quita y vuelve a poner el dedo");
-    while (p != FINGERPRINT_NOFINGER) {
-      p = finger.getImage();
+int16_t getPassword(){
+  uint8_t num_keys = 0;
+  int16_t password = 0;
+  char key = 0;
+  while(num_keys < 4 && password != -1){
+    key = kpd.waitForKey();
+    if(key > 47 && key < 58){
+      password = password * 10;
+      password += (key-48);
+      num_keys++;
     }
-
-    if(getFingerImage() == FINGERPRINT_OK){
-      Serial.println("Paso 2");
-      p = finger.image2Tz(2);
-      if (p != FINGERPRINT_OK)  return false;
-      p = finger.createModel();
-      if(p == FINGERPRINT_OK){
-        Serial.println("Paso 3");
-        return true;
-      }
-    }
+    else
+      password = -1;
   }
-  return false;
+  return password;
 }
 
-bool getPassword(int &password){
-  int pass = 0, pass2 = 0;
+int16_t checkPassword(){
+  int16_t pass = 0;
+  int16_t pass2 = 0;
   showLed(WHITE_LED,3,"Inserta una Clave");
-  if(getKeyPass(pass)){
+  pass = getPassword();
+  if(pass != -1){
     showLed(GREEN_LED,3,"Repite la Clave");
-    if(getKeyPass(pass2)){
+    pass2 = getPassword();
+    if(pass2 != -1){
       if(pass == pass2){
-        password = pass;
         showLed(GREEN_LED,3,"Las Claves son iguales");
-        return true;
+        return pass;
       }
       else
           showLed(RED_LED,3,"ERROR: Las Claves no coinciden");
     }
     else
-      showLed(RED_LED,3,"ERROR: Fallo al insertar Clave");
+      showLed(RED_LED,3,"ERROR: Fallo al repetir Clave");
   }
   else
     showLed(RED_LED,3,"ERROR: Fallo al insertar Clave");
-  return false;
-}
-
-bool getKeyPass(int &password){
-  int num_keys = 0;
-  int pass = 0;
-  char key = 0;
-  while(num_keys < 4){
-    key = kpd.waitForKey();
-    if(key < 48 && key > 57)
-      return false;
-    pass = pass*10;
-    pass += (key-48);
-    num_keys++;
-  }
-  password = pass;
-  return true;
+  return -1;
 }
 
 void checkAccess(){
-  uint16_t id = checkFingerprint();
+  int id = checkFingerID();
   if(id != -1){
     digitalWrite(RELAY_PIN,LOW);
     showLed(GREEN_LED,3,"Acceso Permitido");
     digitalWrite(RELAY_PIN,HIGH);
   }
-  else{
+  else
     showLed(RED_LED,3,"Acceso Denegado");
-  }
 }
 
 void showLed(int led_pin, int seconds, char* message){
