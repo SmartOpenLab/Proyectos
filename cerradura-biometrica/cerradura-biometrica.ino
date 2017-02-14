@@ -10,6 +10,7 @@
 #include <Keypad.h>
 #include <Adafruit_Fingerprint.h>
 #include "U8glib.h"
+#include <EEPROM.h>
 
 //Define main modules
 bool subscribe();
@@ -42,7 +43,6 @@ void draw(char* m);
 
 /**************************** OLED Setup *************************************/
 U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NO_ACK);
-
 
 /************************** Keypad Setup *************************************/
 const byte ROWS = 4; //Number of rows
@@ -88,6 +88,8 @@ void setup(){
   finger.begin(57600);
   u8g.setFont(u8g_font_unifont);
   u8g.setColorIndex(1);
+  control_id = EEPROM.read(645);
+  user_id = EEPROM.read(646);
 }
 
 void loop(){
@@ -132,7 +134,15 @@ bool subscribe(){
           Serial.print(user_pass); 
           Serial.println(")"); 
         #endif
+        EEPROM.write((user_id*4)+3,user_pass%10);
+        user_pass = user_pass/10;
+        EEPROM.write((user_id*4)+2,user_pass%10);
+        user_pass = user_pass/10;
+        EEPROM.write((user_id*4)+1,user_pass%10);
+        user_pass = user_pass/10;
+        EEPROM.write((user_id*4)+0,user_pass%10);
         user_id++;
+        EEPROM.write(646,user_id);
         showLed(GREEN_LED,2,"Usuario agregado");
       }
     }
@@ -142,7 +152,30 @@ bool subscribe(){
   else
     showLed(RED_LED,5, "Error: No es huella de control");
 }
-bool unsubscribe(){}
+
+bool unsubscribe(){
+  showLed(WHITE_LED,1,"Introduzca una  huella de control");
+  if(isFingerControl()){
+    int finger_id = checkFingerID();
+    if(finger_id != -1){
+      if(finger_id > num_control_id && finger_id <= user_id){
+        if(finger.deleteModel(finger_id) == FINGERPRINT_OK){
+          EEPROM.write((finger_id*4)+0,255);
+          EEPROM.write((finger_id*4)+1,255);
+          EEPROM.write((finger_id*4)+2,255);
+          EEPROM.write((finger_id*4)+3,255);
+          showLed(GREEN_LED,3,"Usuario borrado correctamente");
+        }
+      }
+      else
+        showLed(RED_LED,3,"Usuario de      control no borrado");
+    }
+    else
+      showLed(RED_LED,3,"Usuario no borrado");
+  }
+  else
+    showLed(RED_LED,5, "Error: No es    huella de control");
+}
 
 bool control(){
   char option = kpd.waitForKey();
@@ -198,7 +231,15 @@ void subscribe_control(){
           Serial.print(user_pass); 
           Serial.println(")"); 
         #endif
+        EEPROM.write((control_id*4)+3,user_pass%10);
+        user_pass = user_pass/10;
+        EEPROM.write((control_id*4)+2,user_pass%10);
+        user_pass = user_pass/10;
+        EEPROM.write((control_id*4)+1,user_pass%10);
+        user_pass = user_pass/10;
+        EEPROM.write((control_id*4)+0,user_pass%10);
         control_id++;
+        EEPROM.write(645,control_id);
         showLed(GREEN_LED,2,"Usuario agregado");
       }
       else
@@ -214,8 +255,13 @@ void unsubscribe_control(){
   int finger_id = checkFingerID(); 
   if(finger_id != -1){ 
     if(finger_id >= 0 && finger_id <= control_id){ 
-      if(finger.deleteModel(finger_id) == FINGERPRINT_OK) 
-        showLed(GREEN_LED,3,"Usuario de      control borrado"); 
+      if(finger.deleteModel(finger_id) == FINGERPRINT_OK){
+        EEPROM.write((finger_id*4)+0,255);
+        EEPROM.write((finger_id*4)+1,255);
+        EEPROM.write((finger_id*4)+2,255);
+        EEPROM.write((finger_id*4)+3,255);
+        showLed(GREEN_LED,3,"Usuario de      control borrado");
+      }
     } 
     else 
       showLed(RED_LED,3,"Usuario normal  no borrado"); 
@@ -324,8 +370,31 @@ void checkAccess(){
     showLed(GREEN_LED,3,"Acceso Permitido");
     digitalWrite(RELAY_PIN,HIGH);
   }
-  else
-    showLed(RED_LED,3,"Acceso Denegado");
+  else{
+    showLed(WHITE_LED,3,"Introduce tu ID (3 digitos)");
+    uint8_t i = 0;
+    uint16_t id = 0;
+    char key = 0;
+    while(i < 3){
+      key = kpd.waitForKey();
+      if(isdigit(key)){
+        id = id*10 + (key-48);
+        i++;
+      }        
+    }
+    int16_t pass = EEPROM.read(id*4+0);
+    pass = pass*10 + EEPROM.read(id*4+1);
+    pass = pass*10 + EEPROM.read(id*4+2);
+    pass = pass*10 + EEPROM.read(id*4+3);
+    showLed(WHITE_LED,3,"Introduce tu clave");
+    if(pass == getPassword() && pass != 0){
+      digitalWrite(RELAY_PIN,LOW);
+      showLed(GREEN_LED,3,"Acceso Permitido");
+      digitalWrite(RELAY_PIN,HIGH);
+    }
+    else
+      showLed(RED_LED,3,"Acceso Denegado");
+  }
 }
 
 void factoryReset(){
@@ -336,6 +405,10 @@ void factoryReset(){
     int i = 0;
     while(i<161){
       if(finger.deleteModel(i) == FINGERPRINT_OK){
+        EEPROM.write(i*4+0,255);
+        EEPROM.write(i*4+1,255);
+        EEPROM.write(i*4+2,255);
+        EEPROM.write(i*4+3,255);
         #ifdef DEBUG
           Serial.print("Borrado Usuario: ");
           Serial.println(i);
@@ -343,6 +416,10 @@ void factoryReset(){
         i++;
       }
     }
+    EEPROM.write(645,0);
+    control_id = 0;
+    EEPROM.write(646,10);
+    user_id = 10;
     showLed(GREEN_LED,3,"Restauracion    Completada");
   }
   else
