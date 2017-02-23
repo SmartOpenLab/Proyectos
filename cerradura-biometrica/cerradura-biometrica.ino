@@ -89,12 +89,22 @@ void setup(){
   u8g.setFont(u8g_font_unifont);
   u8g.setColorIndex(1);
   control_id = EEPROM.read(645);
+  if(control_id==255)
+    control_id=0;
   user_id = EEPROM.read(646);
+  if(user_id==255)
+    user_id=0;
+
+  #ifdef DEBUG
+    Serial.println(control_id);
+    Serial.println(user_id);
+  #endif
 }
 
 void loop(){
   char op = kpd.waitForKey();
   if(kpd.getState() == PRESSED){
+    Serial.println(op);
     digitalWrite(WHITE_LED,HIGH);
     switch(op){
       case 'A':
@@ -191,7 +201,11 @@ bool control(){
         pass = getPassword(); 
         if(pass == key_b) 
           correct_control = true;
-      } 
+        else
+          showLed(RED_LED,3,"Clave Incorrecta");
+      }
+      else
+        showLed(RED_LED,3,"Clave Incorrecta");
     }
     else{
       showLed(WHITE_LED,1,"Introduzca una huella de control");
