@@ -381,8 +381,9 @@ void checkAccess(){
   int id = checkFingerID();
   if(id != -1){
     digitalWrite(RELAY_PIN,LOW);
-    showLed(GREEN_LED,3,"Acceso Permitido");
+    delay(100);
     digitalWrite(RELAY_PIN,HIGH);
+    showLed(GREEN_LED,3,"Acceso Permitido");
   }
   else{
     showLed(WHITE_LED,3,"Introduce tu ID (3 digitos)");
