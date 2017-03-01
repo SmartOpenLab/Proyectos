@@ -151,9 +151,13 @@ bool subscribe(){
         EEPROM.write((user_id*4)+1,user_pass%10);
         user_pass = user_pass/10;
         EEPROM.write((user_id*4)+0,user_pass%10);
+        char message[20] = "Usuario agregado";
+        char user_id_str[4] = "";
+        sprintf(user_id_str,"%03i",user_id);
+        strcat(message,user_id_str);
         user_id++;
         EEPROM.write(646,user_id);
-        showLed(GREEN_LED,2,"Usuario agregado");
+        showLed(GREEN_LED,2,message);
       }
     }
     else
@@ -166,6 +170,7 @@ bool subscribe(){
 bool unsubscribe(){
   showLed(WHITE_LED,1,"Introduzca una  huella de control");
   if(isFingerControl()){
+    showLed(WHITE_LED,3,"Introduzca huella a borrar");
     int finger_id = checkFingerID();
     if(finger_id != -1){
       if(finger_id > num_control_id && finger_id <= user_id){
@@ -252,9 +257,13 @@ void subscribe_control(){
         EEPROM.write((control_id*4)+1,user_pass%10);
         user_pass = user_pass/10;
         EEPROM.write((control_id*4)+0,user_pass%10);
+        char message[20] = "Usuario agregado";
+        char user_id_str[4] = "";
+        sprintf(user_id_str,"%03i",user_id);
+        strcat(message,user_id_str);
         control_id++;
         EEPROM.write(645,control_id);
-        showLed(GREEN_LED,2,"Usuario agregado");
+        showLed(GREEN_LED,2,message);
       }
       else
         showLed(RED_LED,5,"Limite de usuarios de control");
