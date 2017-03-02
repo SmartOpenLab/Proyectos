@@ -7,6 +7,12 @@
 
 #define DEBUG
 
+#define OLED_MODE
+
+#if !defined LED_MODE && !defined OLED_MODE
+  #error "You need to specific at least one mode of show information"
+#endif
+
 #include <Keypad.h>
 #include <Adafruit_Fingerprint.h>
 #include "U8glib.h"
@@ -42,7 +48,9 @@ void draw(char* m);
 #define RED_LED A2 //Green led for pass
 
 /**************************** OLED Setup *************************************/
+#ifdef OLED_MODE
 U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NO_ACK);
+#endif
 
 /************************** Keypad Setup *************************************/
 const byte ROWS = 4; //Number of rows
@@ -86,8 +94,10 @@ void setup(){
   pinMode(RELAY_PIN,OUTPUT);
   digitalWrite(RELAY_PIN,HIGH);
   finger.begin(57600);
-  u8g.setFont(u8g_font_unifont);
-  u8g.setColorIndex(1);
+  #ifdef OLED_MODE
+    u8g.setFont(u8g_font_unifont);
+    u8g.setColorIndex(1);
+  #endif
   control_id = EEPROM.read(645);
   if(control_id==255)
     control_id=0;
@@ -351,7 +361,7 @@ int16_t getPassword(){
   char key = 0;
   while(num_keys < 4 && password != -1){
     key = kpd.waitForKey();
-    if(key > 47 && key < 58){
+    if(isdigit(key)){
       password = password * 10;
       password += (key-48);
       num_keys++;
@@ -454,17 +464,26 @@ void showLed(int led_pin, int seconds, char* message){
     #ifdef DEBUG
       Serial.println(message);
     #endif
-    u8g.firstPage();
-    do {  
-      draw(message);
-    } while( u8g.nextPage() );
-    digitalWrite(led_pin,HIGH);
+    #ifdef OLED_MODE
+      u8g.firstPage();
+      do {  
+        draw(message);
+      } while( u8g.nextPage() );
+    #endif
+    #ifdef LED_MODE
+      digitalWrite(led_pin,HIGH);
+    #endif
     delay(seconds*1000);
-    u8g.firstPage();
-    while( u8g.nextPage() );
-    digitalWrite(led_pin,LOW);
+    #ifdef OLED_MODE
+      u8g.firstPage();
+      while( u8g.nextPage() );
+    #endif
+    #ifdef LED_MODE
+      digitalWrite(led_pin,LOW);
+    #endif
 }
 
+#ifdef OLED_MODE
 void draw(char* m){
   int i = 0;
   char message[51] = "";
@@ -478,3 +497,4 @@ void draw(char* m){
   }
   u8g.drawStr( 0, 15+i, message);
 }
+#endif
