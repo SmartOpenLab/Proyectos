@@ -1,6 +1,7 @@
 /*****************************************************************************
- * Designed to work with Arduino Uno, generic keypad (using a matrix pinout)
- * and generic fingerprint sensor (using Serial Communication)
+ * Designed to work with Arduino Uno, generic keypad (using a matrix pinout),
+ * generic fingerprint sensor (using Serial Communication) and OLED display
+ * 128x64 size (using i2c bus)
  * 
  * @Author: Jorge Bote Albalá - Joriks <jorikst@gmail.com>
  *****************************************************************************/
@@ -86,8 +87,9 @@ int key_a = 1111;
 int key_b = 2222;
 
 void setup(){
-  Serial.begin(9600);
-  kpd.setDebounceTime(50);
+  #ifdef DEBUG
+    Serial.begin(9600);
+  #endif
   pinMode(WHITE_LED,OUTPUT);
   pinMode(GREEN_LED,OUTPUT);
   pinMode(RED_LED,OUTPUT);
