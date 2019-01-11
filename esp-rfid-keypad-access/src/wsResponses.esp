@@ -22,9 +22,11 @@ void ICACHE_FLASH_ATTR sendUserList(int page, AsyncWebSocketClient *client) {
 			JsonObject &json = jsonBuffer2.parseObject(buf.get());
 			if (json.success()) {
 				String username = json["user"];
+				String userpwd = json["userpwd"];
 				int AccType = json["acctype"];
 				unsigned long validuntil = json["validuntil"];
 				item["username"] = username;
+				item["userpwd"] = userpwd;
 				item["acctype"] = AccType;
 				item["validuntil"] = validuntil;
 			}

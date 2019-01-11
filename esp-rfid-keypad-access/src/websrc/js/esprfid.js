@@ -505,6 +505,7 @@ function listSCAN(obj) {
             document.getElementById("uid").value = obj.uid;
             document.getElementById("picctype").value = obj.type;
             document.getElementById("username").value = obj.user;
+            document.getElementById("userpwd").value = obj.userpwd;
             document.getElementById("acctype").value = obj.acctype;
         }
     }
@@ -676,11 +677,13 @@ function restore1by1(i, len, data) {
     var datatosend = {};
     uid = data[i].uid;
     user = data[i].username;
+    userpwd = data[i].userpwd;
     acc = data[i].acctype;
     valid = data[i].validuntil;
     datatosend.command = "userfile";
     datatosend.uid = uid;
     datatosend.user = user;
+    datatosend.userpwd = userpwd;
     datatosend.acctype = acc;
     datatosend.validuntil = valid;
     websock.send(JSON.stringify(datatosend));
@@ -874,6 +877,10 @@ function initLatestLogTable() {
                     "title": "User Name or Label"
                 },
                 {
+                    "name": "userpwd",
+                    "title": "User Password"
+                },
+                {
                     "name": "acctype",
                     "title": "Access",
                     "breakpoints": "xs sm",
@@ -914,6 +921,10 @@ function initUserTable() {
                     {
                         "name": "username",
                         "title": "User Name or Label"
+                    },
+                    {
+                        "name": "userpwd",
+                        "title": "User Password"
                     },
                     {
                         "name": "acctype",
@@ -966,6 +977,7 @@ function initUserTable() {
                         }
                         $editor.find("#uid").val(values.uid);
                         $editor.find("#username").val(values.username);
+                        $editor.find("#userpwd").val(values.password);
                         $editor.find("#acctype").val(acctypefinder);
                         $editor.find("#validuntil").val(values.validuntil);
                         $modal.data("row", row);
@@ -996,6 +1008,7 @@ function initUserTable() {
                 values = {
                     uid: $editor.find("#uid").val(),
                     username: $editor.find("#username").val(),
+                    userpwd: $editor.find("#userpwd").val(),
                     acctype: parseInt($editor.find("#acctype").val()),
                     validuntil: (new Date($editor.find("#validuntil").val()).getTime() / 1000)
                 };
@@ -1011,6 +1024,7 @@ function initUserTable() {
             datatosend.command = "userfile";
             datatosend.uid = $editor.find("#uid").val();
             datatosend.user = $editor.find("#username").val();
+            datatosend.userpwd = $editor.find("#userpwd").val();
             datatosend.acctype = parseInt($editor.find("#acctype").val());
             var validuntil = $editor.find("#validuntil").val();
             var vuepoch = (new Date(validuntil).getTime() / 1000);
@@ -1319,7 +1333,7 @@ function logout() {
             // If we don"t get an error, we actually got an error as we expect an 401!
         })
         .fail(function() {
-            // We expect to get an 401 Unauthorized error! In this case we are successfully 
+            // We expect to get an 401 Unauthorized error! In this case we are successfully
             // logged out and we redirect the user.
             document.location = "index.html";
         });
