@@ -504,9 +504,9 @@ function listSCAN(obj) {
             $(".footable-add").click();
             document.getElementById("uid").value = obj.uid;
             document.getElementById("picctype").value = obj.type;
-            document.getElementById("username").value = obj.user;
-            document.getElementById("userpwd").value = obj.userpwd;
-            document.getElementById("acctype").value = obj.acctype;
+            document.getElementById("username").value = '';
+            document.getElementById("userpwd").value = '';
+            document.getElementById("acctype").value = '';
         }
     }
 }
@@ -829,7 +829,7 @@ function initLatestLogTable() {
             case 1:
                 newlist[i].options.classes = "success";
                 break;
-			case 2:
+            case 2:
                 newlist[i].options.classes = "warning";
                 break;
             case 99:
