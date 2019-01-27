@@ -1389,39 +1389,6 @@ function login() {
     }
 }
 
-
-function getLatestReleaseInfo() {
-
-    $.getJSON("https://api.github.com/repos/esprfid/esp-rfid/releases/latest").done(function(release) {
-        var asset = release.assets[0];
-        var downloadCount = 0;
-        for (var i = 0; i < release.assets.length; i++) {
-            downloadCount += release.assets[i].download_count;
-        }
-        var oneHour = 60 * 60 * 1000;
-        var oneDay = 24 * oneHour;
-        var dateDiff = new Date() - new Date(release.published_at);
-        var timeAgo;
-        if (dateDiff < oneDay) {
-            timeAgo = (dateDiff / oneHour).toFixed(1) + " hours ago";
-        } else {
-            timeAgo = (dateDiff / oneDay).toFixed(1) + " days ago";
-        }
-
-        var releaseInfo = release.name + " was updated " + timeAgo + " and downloaded " + downloadCount.toLocaleString() + " times.";
-        $("#downloadupdate").attr("href", asset.browser_download_url);
-        $("#releasehead").text(releaseInfo);
-        $("#releasebody").text(release.body);
-        $("#releaseinfo").fadeIn("slow");
-        $("#versionhead").text(version);
-    }).error(function() { $("#onlineupdate").html("<h5>Couldn't get release info. Are you connected to the Internet?</h5>"); });
-}
-
-
-$("#update").on("shown.bs.modal", function(e) {
-    getLatestReleaseInfo();
-});
-
 function allowUpload() {
     $("#upbtn").prop("disabled", false);
 }
