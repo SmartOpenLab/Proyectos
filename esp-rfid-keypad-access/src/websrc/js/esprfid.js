@@ -1366,27 +1366,22 @@ function upload() {
 }
 
 function login() {
-    if (document.getElementById("password").value === "neo") {
-        $("#signin").modal("hide");
-        connectWS();
-    } else {
-        var username = "admin";
-        var password = document.getElementById("password").value;
-        var url = "/login";
-        var xhr = new XMLHttpRequest();
-        xhr.open("get", url, true, username, password);
-        xhr.onload = function(e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    $("#signin").modal("hide");
-                    connectWS();
-                } else {
-                    alert("Incorrect password!");
-                }
+    var username = "admin";
+    var password = document.getElementById("password").value;
+    var url = "/login";
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", url, true, username, password);
+    xhr.onload = function(e) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                $("#signin").modal("hide");
+                connectWS();
+            } else {
+                alert("Incorrect password!");
             }
-        };
-        xhr.send(null);
-    }
+        }
+    };
+    xhr.send(null);
 }
 
 function allowUpload() {
