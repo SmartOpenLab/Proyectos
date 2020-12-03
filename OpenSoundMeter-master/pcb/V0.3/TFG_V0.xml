@@ -1,0 +1,1416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/gordillo/Dropbox/Docencia/PFC/ArduinoSoundMeter/DiseñoElectronico/V0.3/TFG_V0.3.sch</source>
+    <date>lun 18 dic 2017 14:10:07 CET</date>
+    <tool>Eeschema 4.0.7-e2-6376~58~ubuntu16.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Sound Pressure Meter</title>
+        <company>Jaime Borrallo Rivera</company>
+        <rev>V0.3</rev>
+        <date>2017-12-15</date>
+        <source>TFG_V0.3.sch</source>
+        <comment number="1" value="Incluye socket para WEMOS "/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="MK1">
+      <value>Microphone_Condenser</value>
+      <footprint>Wire_Connections_Bridges:WireConnection_0.80mmDrill</footprint>
+      <libsource lib="device" part="Microphone_Condenser"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A259330</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>300</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/pr010203-239785.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">1 W</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1watt 300ohms 5%</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">PR01000103000JR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5073NW300R0J</field>
+        <field name="Source Price">0,153 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/PR01000103000JR500/?qs=sGAEpiMZZMtlubZbdhIBIH7EkvzN5n%2fN55TqVTvPwj4%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A259652</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>2.2k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/pr010203-239785.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">1 W</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1watt 2.2Kohms 5%</field>
+        <field name="MFN">Vishay/BC Components</field>
+        <field name="MFP">PR01000102201JR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">594-5073NW2K200J</field>
+        <field name="Source Price">0,153 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/PR01000102201JR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvWDtgA0QJWwY%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A25970F</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>1u</value>
+      <footprint>Capacitors_THT:C_Axial_L3.8mm_D2.6mm_P10.00mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/021asm-239741.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">63 VDC</field>
+        <field name="Description ">Capacitadores electrolíticos de aluminio - Con patas 1uF 63V 20% Axial</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">MAL202128108E3</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">594-2222-021-28108</field>
+        <field name="Source Price">0,493 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/MAL202128108E3/?qs=sGAEpiMZZMsh%252b1woXyUXj0wk5eamGd3b0nzlUsp6B2g%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="CP1"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A25A94A</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A25A98F</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>TL074</value>
+      <footprint>Housings_DIP:DIP-14_W7.62mm</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/tl074.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">36 V</field>
+        <field name="Description">Amplificadores operacionales - Op Amps JFET Input Low Noise</field>
+        <field name="MFN">Texas Instruments</field>
+        <field name="MFP">TL074CN</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">595-TL074CN</field>
+        <field name="Source Price">0,544 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Texas-Instruments/TL074CN/?qs=sGAEpiMZZMtCHixnSjNA6NVXWo9AXLOeoUCxMTuUhxw%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="linear" part="TL074"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A269AD0</tstamp>
+    </comp>
+    <comp ref="R11">
+      <value>50k</value>
+      <footprint>Potentiometers:Potentiometer_Trimmer_Bourns_3296Y</footprint>
+      <datasheet>https://www.verical.com/datasheet/bi-technologies-trimmers-pots-rheostats-67yr50klf-771818.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">200 VCD</field>
+        <field name="Description">Resistencias eléctricos - Agujero pasante 3/8" Squ 50K 10%</field>
+        <field name="MFN">BI Technologies / TT Electronics</field>
+        <field name="MFP">67YR50KLF</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">858-67YR50KLF</field>
+        <field name="Source Price">1,07 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/BI-Technologies-TT-Electronics/67YR50KLF/?qs=sGAEpiMZZMvygUB3GLcD7jZSyzxDqivkgX13ZqnGEVY%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R_Variable"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A269EC2</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>TL074</value>
+      <footprint>Housings_DIP:DIP-14_W7.62mm</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/tl074.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">36 V</field>
+        <field name="Description">Amplificadores operacionales - Op Amps JFET Input Low Noise</field>
+        <field name="MFN">Texas Instruments</field>
+        <field name="MFP">TL074CN</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">595-TL074CN</field>
+        <field name="Source Price">0,544 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Texas-Instruments/TL074CN/?qs=sGAEpiMZZMtCHixnSjNA6NVXWo9AXLOeoUCxMTuUhxw%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="linear" part="TL074"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A269F7B</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>2.2n</value>
+      <footprint>Capacitors_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/kvseries-1097555.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">50 VDC</field>
+        <field name="Description">Condensadores de cerámica multicapa (MLCC), con alimentación 2200pF 50volts 5% C0G 2.5mm LS</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">K222J15C0GF53L2</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">594-K222J15C0GF53L2</field>
+        <field name="Source Price">0,162 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/K222J15C0GF53L2/?qs=sGAEpiMZZMsh%252b1woXyUXjyVRnB3x21m5IKuv8pvsZQ0%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26AB71</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>100n</value>
+      <footprint>Capacitors_THT:C_Rect_L7.0mm_W2.0mm_P5.00mm</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/Sprague%201C-3C%20MLC%20leaded%20capacitors%202000-1211470.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">50 VDC</field>
+        <field name="Description">Condensadores de cerámica multicapa (MLCC), con alimentación 0.1uF 50volts Z5U 20% 2.5mm L/S</field>
+        <field name="MFN">Vishay / Sprague</field>
+        <field name="MFP">1C10Z5U104M050B</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">75-1C10Z5U104M050B</field>
+        <field name="Source Price">0,085 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Sprague/1C10Z5U104M050B/?qs=sGAEpiMZZMsh%252b1woXyUXjxCzu%2fsraiJXKPnmCIe%252b80o%3d</field>
+        <field name="Notes ">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26ABD3</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>4.7n</value>
+      <footprint>Capacitors_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm</footprint>
+      <datasheet>http://www.mouser.com/ds/2/212/KEM_C1051_GOLDMAX_Z5U-1140498.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">50 VDC</field>
+        <field name="Description">Condensadores de cerámica multicapa (MLCC), con alimentación 50volts 4700pF 10% X7R</field>
+        <field name="MFN">KEMET</field>
+        <field name="MFP">C315C472K5R5TA</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">80-C315C472K5R</field>
+        <field name="Source Price">0,272 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/KEMET/C315C472K5R5TA/?qs=sGAEpiMZZMsh%252b1woXyUXj1awJE2F56y1FQERjQ%252bH4nY%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26B06E</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>1n</value>
+      <footprint>Capacitors_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/kvseries-1097555.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">50 VDC</field>
+        <field name="Description">Condensadores de cerámica multicapa (MLCC), con alimentación 1000pF 50volts 5% C0G 5mm LS</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">K102J15C0GF53H5</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">594-K102J15C0GF53H5</field>
+        <field name="Source Price">0,153 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/K102J15C0GF53H5/?qs=sGAEpiMZZMsh%252b1woXyUXj6wOtk7b2qswISdYo9T5OjE%3d</field>
+        <field name="Notes ">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26B596</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>1N4148</value>
+      <footprint>Diodes_THT:D_T-1_P5.08mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/308/1N4148-1118184.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">100 V</field>
+        <field name="Description">Diodos: de propósito general, potencia y conmutación 100V Io/200mA BULK</field>
+        <field name="MFN">ON Semiconductor/ Fairchild</field>
+        <field name="MFP">1N4148</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">512-1N4148</field>
+        <field name="Source Price">0,085 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/ON-Semiconductor-Fairchild/1N4148/?qs=sGAEpiMZZMudZehw8RjeZWbu6z6oTQTL</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26DB07</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>1N4148</value>
+      <footprint>Diodes_THT:D_T-1_P5.08mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/308/1N4148-1118184.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">100 V</field>
+        <field name="Description ">Diodos: de propósito general, potencia y conmutación 100V Io/200mA BULK</field>
+        <field name="MFN">ON Semiconductor/ Fairchild</field>
+        <field name="MFP">1N4148</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">512-1N4148</field>
+        <field name="Source Price">0,085 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/ON-Semiconductor-Fairchild/1N4148/?qs=sGAEpiMZZMudZehw8RjeZWbu6z6oTQTL</field>
+        <field name="Notes ">Value</field>
+      </fields>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26DBD8</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>2.2u</value>
+      <footprint>Capacitors_THT:C_Axial_L3.8mm_D2.6mm_P10.00mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/030031as-239681.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">63 VDC</field>
+        <field name="Description ">Capacitadores electrolíticos de aluminio - Con patas 2.2UF 63V-10%, +50% AXIAL</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">MAL203038228E3</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">594-2222-030-38228</field>
+        <field name="Source Price">0,374 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/MAL203038228E3/?qs=sGAEpiMZZMsh%252b1woXyUXjz6JV3ucdSNMR%2flsrIzZwRI%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="CP1"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A26E3BC</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>1N4148</value>
+      <footprint>Diodes_THT:D_T-1_P5.08mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/308/1N4148-1118184.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">100 V</field>
+        <field name="Description">Diodos: de propósito general, potencia y conmutación 100V Io/200mA BULK</field>
+        <field name="MFN">ON Semiconductor/ Fairchild</field>
+        <field name="MFP">1N4148</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">512-1N4148</field>
+        <field name="Source Price">0,085 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/ON-Semiconductor-Fairchild/1N4148/?qs=sGAEpiMZZMudZehw8RjeZWbu6z6oTQTL</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2700DA</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>10k</value>
+      <footprint>Potentiometers:Potentiometer_Trimmer_Bourns_3296Y</footprint>
+      <datasheet>http://www.ttelectronics.com/sites/default/files/download-files/Datasheet_Trimmer_67.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">200 VCD</field>
+        <field name="Description">Resistencias eléctricos - Agujero pasante 10K ohm 10% 3/8" Squ</field>
+        <field name="MFN">BI Technologies / TT Electronics</field>
+        <field name="MFP">67YR10KLFTB</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">858-67YR10KLFTB</field>
+        <field name="Source Price">1,05 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/BI-Technologies-TT-Electronics/67YR10KLFTB/?qs=sGAEpiMZZMvygUB3GLcD7lv7xXtevcsqg%252b18Jc5vJOA%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R_Variable"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2705E5</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>1k</value>
+      <footprint>Potentiometers:Potentiometer_Trimmer_Bourns_3296Y</footprint>
+      <datasheet>http://www.ttelectronics.com/sites/default/files/download-files/Datasheet_Trimmer_67.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">200 VCD</field>
+        <field name="Description">Resistencias eléctricos - Agujero pasante 3/8" Squ 1K 10%</field>
+        <field name="MFN">BI Technologies / TT Electronics</field>
+        <field name="MFP">67YR1KLF</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">67YR1KLF</field>
+        <field name="Source Price">1,07 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/BI-Technologies-TT-Electronics/67YR1KLF/?qs=sGAEpiMZZMvygUB3GLcD7jZSyzxDqivk6Z6lZC%2fMnhw%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R_Variable"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A271656</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>33u</value>
+      <footprint>Capacitors_THT:C_Axial_L3.8mm_D2.6mm_P10.00mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/021asm-239741.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">63 VDC</field>
+        <field name="Description ">Capacitadores electrolíticos de aluminio - Con patas 33uF 63V 20% Axial</field>
+        <field name="MFN">Vishay/BC Components</field>
+        <field name="MFP">MAL202128339E3</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">594-2222-021-28339</field>
+        <field name="Source Price">0,604 €</field>
+        <field name="Source Link ">https://www.mouser.es/ProductDetail/Vishay-BC-Components/MAL202128339E3/?qs=sGAEpiMZZMtZ1n0r9vR22fPFtzULxwAMvkuZcjbskZc%3d</field>
+        <field name="Notes ">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A272CFC</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>100n</value>
+      <footprint>Capacitors_THT:C_Rect_L7.0mm_W2.0mm_P5.00mm</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/Sprague%201C-3C%20MLC%20leaded%20capacitors%202000-1211470.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">50 VDC</field>
+        <field name="Description">Condensadores de cerámica multicapa (MLCC), con alimentación 0.1uF 50volts Z5U 20% 2.5mm L/S</field>
+        <field name="MFN">Vishay / Sprague</field>
+        <field name="MFP">1C10Z5U104M050B</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">75-1C10Z5U104M050B</field>
+        <field name="Source Price">0,085 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Sprague/1C10Z5U104M050B/?qs=sGAEpiMZZMsh%252b1woXyUXjxCzu%2fsraiJXKPnmCIe%252b80o%3d</field>
+        <field name="Notes ">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2B1B4E</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>4.7n</value>
+      <footprint>Capacitors_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm</footprint>
+      <datasheet>http://www.mouser.com/ds/2/212/KEM_C1051_GOLDMAX_Z5U-1140498.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">50 VDC</field>
+        <field name="Description">Condensadores de cerámica multicapa (MLCC), con alimentación 50volts 4700pF 10% X7R</field>
+        <field name="MFN">KEMET</field>
+        <field name="MFP">C315C472K5R5TA</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">80-C315C472K5R</field>
+        <field name="Source Price">0,272 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/KEMET/C315C472K5R5TA/?qs=sGAEpiMZZMsh%252b1woXyUXj1awJE2F56y1FQERjQ%252bH4nY%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2B354A</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DA78A</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DAD72</tstamp>
+    </comp>
+    <comp ref="R24">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DB28C</tstamp>
+    </comp>
+    <comp ref="R21">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DBC3D</tstamp>
+    </comp>
+    <comp ref="R18">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DC047</tstamp>
+    </comp>
+    <comp ref="R13">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DC253</tstamp>
+    </comp>
+    <comp ref="R12">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DD4B7</tstamp>
+    </comp>
+    <comp ref="R9">
+      <value>1k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/ptf-239718.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">300 V</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 1Kohms .1% 5ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">PTF561K0000BZEK</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-PTF561K0000BZEK</field>
+        <field name="Source Price">1,37 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/PTF561K0000BZEK/?qs=sGAEpiMZZMtlubZbdhIBIDfOMup5oo51%252bs9HTFYBx3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DD66F</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>20 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/pr010203-239785.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">1 W</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1watt 20Kohms 5%</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">PR01000102002JR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5073NW20K00J</field>
+        <field name="Source Price">0,153 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/PR01000102002JR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvcXCTzMTkq0Y%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DDFEF</tstamp>
+    </comp>
+    <comp ref="R25">
+      <value>20 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/pr010203-239785.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">1 W</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1watt 20Kohms 5%</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">PR01000102002JR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5073NW20K00J</field>
+        <field name="Source Price">0,153 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/PR01000102002JR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvcXCTzMTkq0Y%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DE5B2</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>6.04 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/mrs16m25-239694.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">600 mW</field>
+        <field name="Description ">Resistores de película fina - a través del orificio .6watt 6.04Kohms 1%</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">MRS25000C6041FRP00</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-MRS25000C6041FRP</field>
+        <field name="Source Price">0,255 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/MRS25000C6041FRP00/?qs=sGAEpiMZZMtlubZbdhIBILNXVGfLCPaRYdNVVAtbqyQ%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2DF257</tstamp>
+    </comp>
+    <comp ref="R17">
+      <value>82.5 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/sfr16s25-239894.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">500 mW</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1/2W 82.5Kohms 1% SFR25H series</field>
+        <field name="MFN">Vishay/BC Components</field>
+        <field name="MFP">SFR25H0008252FR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5053HD82K50F</field>
+        <field name="Source Price">0,145 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/SFR25H0008252FR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvBInqeF77j3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2E0046</tstamp>
+    </comp>
+    <comp ref="R20">
+      <value>150 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/pr010203-239785.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">1 W</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1watt 150Kohms 5%</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">PR01000101503JR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5073NW150K0J</field>
+        <field name="Source Price">0,153 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/PR01000101503JR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvq83rc%2fKQHzc%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2E0D14</tstamp>
+    </comp>
+    <comp ref="R23">
+      <value>4k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/cmfind-239942.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">500 mW</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/2W 4Kohms .1%</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">CMF554K0000BHEB</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-CMF554K0000BHEB</field>
+        <field name="Source Price">0,519 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/CMF554K0000BHEB/?qs=sGAEpiMZZMu61qfTUdNhG%2fYeirsUcb7vuWyTTpZF6XY%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2E1500</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>56.7k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/cmfmil-223788.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">125 mW</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/8watt 56.9Kohms 1% 100ppm</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">RN55D5692FB14</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-RN55D5692F</field>
+        <field name="Source Price">0,094 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/RN55D5692FB14/?qs=sGAEpiMZZMu61qfTUdNhG%252bpsoCdlAlNbnsL9Ma9ZmB8%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2E1F2C</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>1.5k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/sfr16s25-239894.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">500 mW</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/2W 1.5Kohms 1% SFR25H series</field>
+        <field name="MFN">Vishay / BC Components</field>
+        <field name="MFP">SFR25H0001501FR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">594-5053HD1K500F</field>
+        <field name="Source Price">0,128 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/SFR25H0001501FR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvXD5sFurxDKI%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2E24B4</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>10k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/cmfind-239942.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">500 mW</field>
+        <field name="Description">Resistores de película de metal - a través del orificio 1/2W 10Kohms .1%</field>
+        <field name="MFN">Vishay / Dale</field>
+        <field name="MFP">CMF5510K000BEEB</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">71-CMF5510K000BEEB</field>
+        <field name="Source Price">0,604 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-Dale/CMF5510K000BEEB/?qs=sGAEpiMZZMu61qfTUdNhG%2ftLN5a%2f3qqMbhu1tAmrWso%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A2E2C1F</tstamp>
+    </comp>
+    <comp ref="R19">
+      <value>82.5 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/sfr16s25-239894.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">500 mW</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1/2W 82.5Kohms 1% SFR25H series</field>
+        <field name="MFN">Vishay/BC Components</field>
+        <field name="MFP">SFR25H0008252FR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5053HD82K50F</field>
+        <field name="Source Price">0,145 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/SFR25H0008252FR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvBInqeF77j3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A3046C4</tstamp>
+    </comp>
+    <comp ref="R22">
+      <value>82.5 k</value>
+      <footprint>Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/sfr16s25-239894.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">500 mW</field>
+        <field name="Description ">Resistores de película de metal - a través del orificio 1/2W 82.5Kohms 1% SFR25H series</field>
+        <field name="MFN">Vishay/BC Components</field>
+        <field name="MFP">SFR25H0008252FR500</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part ">594-5053HD82K50F</field>
+        <field name="Source Price">0,145 €</field>
+        <field name="Source Link">https://www.mouser.es/ProductDetail/Vishay-BC-Components/SFR25H0008252FR500/?qs=sGAEpiMZZMtlubZbdhIBIDqBBcd6vlUvBInqeF77j3k%3d</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A30494D</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>33u</value>
+      <footprint>Capacitors_THT:C_Axial_L3.8mm_D2.6mm_P10.00mm_Horizontal</footprint>
+      <datasheet>http://www.mouser.com/ds/2/427/021asm-239741.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">63 VDC</field>
+        <field name="Description ">Capacitadores electrolíticos de aluminio - Con patas 33uF 63V 20% Axial</field>
+        <field name="MFN">Vishay/BC Components</field>
+        <field name="MFP">MAL202128339E3</field>
+        <field name="Package ID">0</field>
+        <field name="Source ">Mouser</field>
+        <field name="Source Part">594-2222-021-28339</field>
+        <field name="Source Price">0,604 €</field>
+        <field name="Source Link ">https://www.mouser.es/ProductDetail/Vishay-BC-Components/MAL202128339E3/?qs=sGAEpiMZZMtZ1n0r9vR22fPFtzULxwAMvkuZcjbskZc%3d</field>
+        <field name="Notes ">Value</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A305C54</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>VCC+</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A276BD8</tstamp>
+    </comp>
+    <comp ref="J5">
+      <value>VDD-</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A27850F</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>GND</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A278434</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>GND</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A31BC29</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>WeMos_mini</value>
+      <footprint>wemos_d1_mini:D1_mini_board</footprint>
+      <libsource lib="TFG_V0.3-cache" part="WeMos_mini"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A3286A9</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>AP1117-33</value>
+      <footprint>TO_SOT_Packages_THT:TO-220-3_Vertical</footprint>
+      <datasheet>http://www.mouser.com/ds/2/268/mic2937-779103.pdf</datasheet>
+      <fields>
+        <field name="Characteristics">26 V</field>
+        <field name="Description">Reguladores de voltaje LDO 750mA LDO Fixed Voltage</field>
+        <field name="MFN">Microchip Technology / Micrel</field>
+        <field name="MFP">MIC2937A-5.0WT</field>
+        <field name="Package ID">0</field>
+        <field name="Source">Mouser</field>
+        <field name="Source Part">998-MIC2937A-5.0WT</field>
+        <field name="Source Price">2,42 €</field>
+        <field name="Source Link">https://www.mouser.es/productdetail/microchip-technology-micrel/mic2937a-50wt?qs=sGAEpiMZZMsGz1a6aV8DcP%252b6ey5cUOYkOk3Vf6HqDrc%3D</field>
+        <field name="Notes">Value</field>
+      </fields>
+      <libsource lib="regul" part="AP1117-33"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A328E59</tstamp>
+    </comp>
+    <comp ref="J9">
+      <value>Salida Previo</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A32B12D</tstamp>
+    </comp>
+    <comp ref="J8">
+      <value>Ajuste nivel umbral</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A32C250</tstamp>
+    </comp>
+    <comp ref="J7">
+      <value>Ajuste señal salida</value>
+      <footprint>Pin_Headers:Pin_Header_Angled_1x01_Pitch1.27mm</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A32C626</tstamp>
+    </comp>
+    <comp ref="P1">
+      <value>CONN_01X08</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x08_Pitch1.00mm</footprint>
+      <libsource lib="TFG_V0.3-cache" part="CONN_01X08"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A335EC8</tstamp>
+    </comp>
+    <comp ref="P2">
+      <value>CONN_01X08</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x08_Pitch1.00mm</footprint>
+      <libsource lib="TFG_V0.3-cache" part="CONN_01X08"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5A339BA9</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="regul" part="AP1117-15">
+      <aliases>
+        <alias>AP1117-18</alias>
+        <alias>AP1117-25</alias>
+        <alias>AP1117-33</alias>
+        <alias>AP1117-50</alias>
+        <alias>LD1117S33TR_SOT223</alias>
+        <alias>LD1117S12TR_SOT223</alias>
+        <alias>LD1117S18TR_SOT223</alias>
+        <alias>LD1117S25TR_SOT223</alias>
+        <alias>LD1117S50TR_SOT223</alias>
+        <alias>NCP1117-12_SOT223</alias>
+        <alias>NCP1117-1.5_SOT223</alias>
+        <alias>NCP1117-1.8_SOT223</alias>
+        <alias>NCP1117-2.0_SOT223</alias>
+        <alias>NCP1117-2.5_SOT223</alias>
+        <alias>NCP1117-2.85_SOT223</alias>
+        <alias>NCP1117-3.3_SOT223</alias>
+        <alias>NCP1117-5.0_SOT223</alias>
+      </aliases>
+      <description>1A Low Dropout regulator, positive, 1.5V fixed output, SOT-223</description>
+      <docs>http://www.diodes.com/datasheets/AP1117.pdf</docs>
+      <footprints>
+        <fp>SOT?223*TabPin2*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AP1117-15</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-223-3Lead_TabPin2</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="VO" type="passive"/>
+        <pin num="3" name="VI" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="TFG_V0.3-cache" part="CONN_01X08">
+      <footprints>
+        <fp>Pin_Header_Straight_1X08</fp>
+        <fp>Pin_Header_Angled_1X08</fp>
+        <fp>Socket_Strip_Straight_1X08</fp>
+        <fp>Socket_Strip_Angled_1X08</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X08</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+        <pin num="5" name="P5" type="passive"/>
+        <pin num="6" name="P6" type="passive"/>
+        <pin num="7" name="P7" type="passive"/>
+        <pin num="8" name="P8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="CP1">
+      <description>Polarised capacitor</description>
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP1</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x01">
+      <description>Generic connector, single row, 01x01</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x01</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="D">
+      <description>Diode</description>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="linear" part="LM2902">
+      <aliases>
+        <alias>LM324</alias>
+        <alias>TLC274</alias>
+        <alias>TLC279</alias>
+        <alias>TL074</alias>
+        <alias>LM324A</alias>
+        <alias>MCP6004</alias>
+        <alias>TL084</alias>
+        <alias>TL064</alias>
+        <alias>LMV324</alias>
+        <alias>LMC6484</alias>
+        <alias>MCP604</alias>
+        <alias>MC33079</alias>
+        <alias>MC33179</alias>
+        <alias>OPA4134</alias>
+        <alias>OPA4340UA</alias>
+        <alias>OPA4376</alias>
+        <alias>MCP6L94</alias>
+        <alias>TSV914</alias>
+        <alias>ADA4807-4</alias>
+      </aliases>
+      <description>Low-Power, Quad-Operational Amplifiers, DIP-14/SOIC-14/SSOP-14</description>
+      <docs>http://www.ti.com/lit/ds/symlink/lm2902-n.pdf</docs>
+      <footprints>
+        <fp>SOIC*3.9x8.7mm*Pitch1.27mm*</fp>
+        <fp>DIP*W7.62mm*</fp>
+        <fp>TSSOP*4.4x5mm*Pitch0.65mm*</fp>
+        <fp>SSOP*5.3x6.2mm*Pitch0.65mm*</fp>
+        <fp>MSOP*3x3mm*Pitch0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LM2902</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="output"/>
+        <pin num="2" name="-" type="input"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="V+" type="power_in"/>
+        <pin num="5" name="+" type="input"/>
+        <pin num="6" name="-" type="input"/>
+        <pin num="7" name="~" type="output"/>
+        <pin num="8" name="~" type="output"/>
+        <pin num="9" name="-" type="input"/>
+        <pin num="10" name="+" type="input"/>
+        <pin num="11" name="V-" type="power_in"/>
+        <pin num="12" name="+" type="input"/>
+        <pin num="13" name="-" type="input"/>
+        <pin num="14" name="~" type="output"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Microphone_Condenser">
+      <description>Condenser Microspcope</description>
+      <fields>
+        <field name="Reference">MK</field>
+        <field name="Value">Microphone_Condenser</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-" type="passive"/>
+        <pin num="2" name="+" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R_Variable">
+      <description>variable Resistor (Rheostat)</description>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_Variable</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="TFG_V0.3-cache" part="WeMos_mini">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">WeMos_mini</field>
+      </fields>
+      <pins>
+        <pin num="1" name="5V" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="D4" type="BiDi"/>
+        <pin num="4" name="D3" type="BiDi"/>
+        <pin num="5" name="D2" type="BiDi"/>
+        <pin num="6" name="D1" type="BiDi"/>
+        <pin num="7" name="Rx" type="BiDi"/>
+        <pin num="8" name="Tx" type="BiDi"/>
+        <pin num="9" name="Rst" type="BiDi"/>
+        <pin num="10" name="A0" type="BiDi"/>
+        <pin num="11" name="D0" type="BiDi"/>
+        <pin num="12" name="D5" type="BiDi"/>
+        <pin num="13" name="D6" type="BiDi"/>
+        <pin num="14" name="D7" type="BiDi"/>
+        <pin num="15" name="D8" type="BiDi"/>
+        <pin num="16" name="3.3V" type="power_out"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="device">
+      <uri>/usr/share/kicad/library/device.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>/usr/share/kicad/library/conn.lib</uri>
+    </library>
+    <library logical="linear">
+      <uri>/usr/share/kicad/library/linear.lib</uri>
+    </library>
+    <library logical="regul">
+      <uri>/usr/share/kicad/library/regul.lib</uri>
+    </library>
+    <library logical="TFG_V0.3-cache">
+      <uri>/home/gordillo/Dropbox/Docencia/PFC/ArduinoSoundMeter/DiseñoElectronico/V0.3/TFG_V0.3-cache.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="C10">
+      <node ref="C10" pin="2"/>
+      <node ref="U2" pin="4"/>
+      <node ref="J5" pin="1"/>
+      <node ref="R7" pin="2"/>
+      <node ref="U1" pin="4"/>
+    </net>
+    <net code="2" name="Net-(R10-Pad2)">
+      <node ref="U1" pin="13"/>
+      <node ref="R10" pin="2"/>
+      <node ref="R11" pin="2"/>
+    </net>
+    <net code="3" name="Net-(J9-Pad1)">
+      <node ref="J9" pin="1"/>
+      <node ref="U1" pin="14"/>
+      <node ref="R11" pin="1"/>
+      <node ref="U2" pin="3"/>
+    </net>
+    <net code="4" name="Net-(D1-Pad1)">
+      <node ref="U1" pin="8"/>
+      <node ref="R9" pin="2"/>
+      <node ref="D1" pin="1"/>
+    </net>
+    <net code="5" name="Net-(R6-Pad1)">
+      <node ref="R6" pin="1"/>
+      <node ref="U1" pin="2"/>
+      <node ref="R9" pin="1"/>
+    </net>
+    <net code="6" name="Net-(R10-Pad1)">
+      <node ref="R10" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="7" name="Net-(R4-Pad2)">
+      <node ref="R4" pin="2"/>
+      <node ref="U1" pin="6"/>
+      <node ref="R5" pin="2"/>
+    </net>
+    <net code="8" name="Net-(P2-Pad5)">
+      <node ref="P2" pin="5"/>
+      <node ref="U3" pin="12"/>
+    </net>
+    <net code="9" name="C9">
+      <node ref="R2" pin="1"/>
+      <node ref="C9" pin="2"/>
+      <node ref="J1" pin="1"/>
+      <node ref="U1" pin="11"/>
+      <node ref="U4" pin="3"/>
+      <node ref="U2" pin="11"/>
+    </net>
+    <net code="10" name="Net-(P2-Pad8)">
+      <node ref="U3" pin="9"/>
+      <node ref="P2" pin="8"/>
+    </net>
+    <net code="11" name="Net-(P2-Pad6)">
+      <node ref="U3" pin="11"/>
+      <node ref="P2" pin="6"/>
+    </net>
+    <net code="12" name="Net-(P2-Pad4)">
+      <node ref="P2" pin="4"/>
+      <node ref="U3" pin="13"/>
+    </net>
+    <net code="13" name="Net-(P2-Pad3)">
+      <node ref="U3" pin="14"/>
+      <node ref="P2" pin="3"/>
+    </net>
+    <net code="14" name="Net-(P2-Pad2)">
+      <node ref="P2" pin="2"/>
+      <node ref="U3" pin="15"/>
+    </net>
+    <net code="15" name="Net-(P2-Pad1)">
+      <node ref="U3" pin="16"/>
+      <node ref="P2" pin="1"/>
+    </net>
+    <net code="16" name="Output">
+      <node ref="U3" pin="10"/>
+      <node ref="P2" pin="7"/>
+      <node ref="U1" pin="1"/>
+      <node ref="R6" pin="2"/>
+      <node ref="J7" pin="1"/>
+    </net>
+    <net code="17" name="Net-(D1-Pad2)">
+      <node ref="D1" pin="2"/>
+      <node ref="U1" pin="9"/>
+      <node ref="R12" pin="1"/>
+    </net>
+    <net code="18" name="Net-(J8-Pad1)">
+      <node ref="R7" pin="1"/>
+      <node ref="U1" pin="3"/>
+      <node ref="J8" pin="1"/>
+      <node ref="R8" pin="2"/>
+    </net>
+    <net code="19" name="Net-(P1-Pad6)">
+      <node ref="U3" pin="3"/>
+      <node ref="P1" pin="6"/>
+    </net>
+    <net code="20" name="Net-(P1-Pad5)">
+      <node ref="P1" pin="5"/>
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="21" name="Net-(P1-Pad4)">
+      <node ref="P1" pin="4"/>
+      <node ref="U3" pin="5"/>
+    </net>
+    <net code="22" name="Net-(P1-Pad3)">
+      <node ref="P1" pin="3"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="23" name="Net-(P1-Pad2)">
+      <node ref="P1" pin="2"/>
+      <node ref="U3" pin="7"/>
+    </net>
+    <net code="24" name="Net-(P1-Pad1)">
+      <node ref="P1" pin="1"/>
+      <node ref="U3" pin="8"/>
+    </net>
+    <net code="25" name="Net-(C4-Pad1)">
+      <node ref="C4" pin="1"/>
+      <node ref="C5" pin="2"/>
+      <node ref="R17" pin="2"/>
+    </net>
+    <net code="26" name="Net-(R15-Pad2)">
+      <node ref="U2" pin="1"/>
+      <node ref="U2" pin="2"/>
+      <node ref="R15" pin="2"/>
+    </net>
+    <net code="27" name="Net-(C3-Pad1)">
+      <node ref="C3" pin="1"/>
+      <node ref="C4" pin="2"/>
+      <node ref="R15" pin="1"/>
+    </net>
+    <net code="28" name="Net-(C5-Pad1)">
+      <node ref="R19" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C5" pin="1"/>
+    </net>
+    <net code="29" name="Net-(C6-Pad1)">
+      <node ref="R20" pin="2"/>
+      <node ref="C6" pin="1"/>
+      <node ref="C7" pin="2"/>
+    </net>
+    <net code="30" name="Net-(C7-Pad1)">
+      <node ref="R22" pin="1"/>
+      <node ref="C7" pin="1"/>
+    </net>
+    <net code="31" name="Net-(C8-Pad1)">
+      <node ref="R22" pin="2"/>
+      <node ref="C8" pin="1"/>
+      <node ref="U2" pin="12"/>
+      <node ref="R25" pin="2"/>
+    </net>
+    <net code="32" name="Net-(C1-Pad1)">
+      <node ref="MK1" pin="2"/>
+      <node ref="R3" pin="1"/>
+      <node ref="C1" pin="1"/>
+    </net>
+    <net code="33" name="Net-(P1-Pad8)">
+      <node ref="U4" pin="2"/>
+      <node ref="U3" pin="1"/>
+      <node ref="P1" pin="8"/>
+    </net>
+    <net code="34" name="Net-(C1-Pad2)">
+      <node ref="C1" pin="2"/>
+      <node ref="R4" pin="1"/>
+    </net>
+    <net code="35" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2"/>
+      <node ref="D3" pin="1"/>
+      <node ref="U2" pin="8"/>
+    </net>
+    <net code="36" name="Net-(D2-Pad1)">
+      <node ref="R18" pin="1"/>
+      <node ref="R16" pin="2"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="37" name="GND">
+      <node ref="MK1" pin="1"/>
+      <node ref="R20" pin="1"/>
+      <node ref="R17" pin="1"/>
+      <node ref="C3" pin="2"/>
+      <node ref="R25" pin="1"/>
+      <node ref="U3" pin="2"/>
+      <node ref="J2" pin="1"/>
+      <node ref="J3" pin="1"/>
+      <node ref="C10" pin="1"/>
+      <node ref="P1" pin="7"/>
+      <node ref="R19" pin="1"/>
+      <node ref="R13" pin="1"/>
+      <node ref="U4" pin="1"/>
+      <node ref="R24" pin="2"/>
+      <node ref="C9" pin="1"/>
+      <node ref="U2" pin="10"/>
+      <node ref="C2" pin="2"/>
+      <node ref="U1" pin="10"/>
+      <node ref="C8" pin="2"/>
+      <node ref="R1" pin="2"/>
+      <node ref="U1" pin="12"/>
+      <node ref="R8" pin="1"/>
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="38" name="Net-(C2-Pad1)">
+      <node ref="R16" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="39" name="Net-(D3-Pad2)">
+      <node ref="R21" pin="1"/>
+      <node ref="R18" pin="2"/>
+      <node ref="U2" pin="9"/>
+      <node ref="D3" pin="2"/>
+    </net>
+    <net code="40" name="Net-(R13-Pad2)">
+      <node ref="R13" pin="2"/>
+      <node ref="U2" pin="6"/>
+      <node ref="R14" pin="1"/>
+    </net>
+    <net code="41" name="Net-(R12-Pad2)">
+      <node ref="R12" pin="2"/>
+      <node ref="U2" pin="7"/>
+      <node ref="R14" pin="2"/>
+    </net>
+    <net code="42" name="Net-(R23-Pad1)">
+      <node ref="U2" pin="13"/>
+      <node ref="R23" pin="1"/>
+      <node ref="R24" pin="1"/>
+    </net>
+    <net code="43" name="Net-(R21-Pad2)">
+      <node ref="R21" pin="2"/>
+      <node ref="R23" pin="2"/>
+      <node ref="U2" pin="14"/>
+    </net>
+    <net code="53" name="Net-(R1-Pad1)">
+      <node ref="R3" pin="2"/>
+      <node ref="R1" pin="1"/>
+      <node ref="R2" pin="2"/>
+    </net>
+  </nets>
+</export>

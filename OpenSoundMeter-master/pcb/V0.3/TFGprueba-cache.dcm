@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MYCONN3
+D Conectores Alimentación y salida
+K Alimentacion, salida
+$ENDCMP
+#
+#End Doc Library
