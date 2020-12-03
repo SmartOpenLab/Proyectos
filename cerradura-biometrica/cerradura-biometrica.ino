@@ -19,6 +19,7 @@ bool reset();
 void checkAccess();
 
 //Define modules
+void subscribe_control();
 uint8_t getFingerImage();
 bool getFingerPrint();
 int checkFingerID();
@@ -140,49 +141,72 @@ bool subscribe(){
   else
     showLed(RED_LED,5, "Error: No es huella de control");
 }
-bool unsubscribe(){
-  showLed(WHITE_LED,1,"Introduzca una  huella de control");
-  if(isFingerControl()){
-    int finger_id = checkFingerID();
-    if(finger_id != -1){
-      if(finger_id > num_control_id && finger_id <= user_id){
-        if(finger.deleteModel(finger_id) == FINGERPRINT_OK)
-          showLed(GREEN_LED,3,"Usuario borrado correctamente");
-      }
-      else
-        showLed(RED_LED,3,"Usuario de      control no borrado");
+bool unsubscribe(){}
+
+bool control(){
+  char option = kpd.waitForKey();
+    
+  if(option != 'D'){
+    bool correct_control = false;
+    
+    if(control_id == 0){
+      showLed(GREEN_LED,3,"Inserta la      primera clave"); 
+      int16_t pass = getPassword(); 
+      if(pass == key_a){ 
+        showLed(GREEN_LED,3,"Inserta la      segunda clave"); 
+        pass = getPassword(); 
+        if(pass == key_b) 
+          correct_control = true;
+      } 
     }
-    else
-      showLed(RED_LED,3,"Usuario no borrado");
+    else{
+      showLed(WHITE_LED,1,"Introduzca una huella de control");
+      if(isFingerControl())
+        correct_control = true;
+      else
+        showLed(RED_LED,5, "Error: No es huella de control");
+    }
+    if(correct_control){
+      if(option == 'A')
+        subscribe_control();
+    }
   }
   else
-    showLed(RED_LED,5, "Error: No es    huella de control");
+    reset();
 }
-bool control(){}
-bool reset(){
-  showLed(GREEN_LED,5,"Identificar por 1)Huella        2)Clave Maestra");
-  char op = kpd.waitForKey();
-  if(op == '1'){
-    showLed(WHITE_LED,1,"Primera huella  de control");
-    if(isFingerControl()){
-      showLed(WHITE_LED,1,"Segunda huella  de control");
-      if(isFingerControl())
-        factoryReset();
-    }
-  }
-  else{
-    if(op == '2'){
-      showLed(GREEN_LED,3,"Inserta la      primera clave");
-      int16_t pass = getPassword();
-      if(pass == key_a){
-        showLed(GREEN_LED,3,"Inserta la      segunda clave");
-        pass = getPassword();
-        if(pass == key_b)
-          factoryReset();
+
+bool reset(){}
+
+void subscribe_control(){
+  int16_t user_pass = 0;
+
+  if(getFingerPrint()){
+    showLed(GREEN_LED,1,"Huella Correcta");
+    user_pass = checkPassword();
+    if(user_pass != -1){
+      if(control_id < num_control_id){
+        finger.storeModel(control_id);
+        #ifdef DEBUG 
+          Serial.print("Añadido Usuario("); 
+          Serial.print(control_id); 
+          Serial.print(","); 
+          Serial.print(user_pass); 
+          Serial.println(")"); 
+        #endif
+        control_id++;
+        showLed(GREEN_LED,2,"Usuario agregado");
       }
+      else
+        showLed(RED_LED,5,"Limite de usuarios de control");
     }
   }
+  else
+    showLed(RED_LED,2, "Error: Las huellas no coinciden");
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 542b761... Added Subscribe control user fuction
 
 uint8_t getFingerImage(){
   uint8_t p = -1;
