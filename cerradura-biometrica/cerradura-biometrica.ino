@@ -114,8 +114,6 @@ void setup(){
 void loop(){
   char op = kpd.waitForKey();
   if(kpd.getState() == PRESSED){
-    Serial.println(op);
-    digitalWrite(WHITE_LED,HIGH);
     switch(op){
       case 'A':
         subscribe();
@@ -133,14 +131,13 @@ void loop(){
         checkAccess();
         break;
     }
-    digitalWrite(WHITE_LED,LOW);
   }
 }
 
 bool subscribe(){
   unsigned int user_pass = 0;
   
-  showLed(WHITE_LED,1,"Introduzca una huella de control");
+  showLed(WHITE_LED,1,"Introduzca una  huella de       control");
   if(isFingerControl()){
     if(getFingerPrint()){
       showLed(GREEN_LED,1,"Huella Correcta");
@@ -148,7 +145,7 @@ bool subscribe(){
       if(user_pass != -1){
         finger.storeModel(user_id);
         #ifdef DEBUG 
-          Serial.print("Añadido Usuario("); 
+          Serial.print("Agregado Usuario("); 
           Serial.print(user_id); 
           Serial.print(","); 
           Serial.print(user_pass); 
@@ -167,15 +164,16 @@ bool subscribe(){
       }
     }
     else
-      showLed(RED_LED,2, "Error: Las huellas no coinciden");
+      showLed(RED_LED,2, "ERROR:          Las huellas NO  coinciden");
   }
   else
-    showLed(RED_LED,5, "Error: No es huella de control");
+    showLed(RED_LED,5, "ERROR:          NO es huella de control");
 }
 
 bool unsubscribe(){
-  showLed(WHITE_LED,1,"Introduzca una  huella de control");
+  showLed(WHITE_LED,1,"Introduzca una  huella de       control");
   if(isFingerControl()){
+    showLed(WHITE_LED,3,"Introduzca una  huella a borrar");
     int finger_id = checkFingerID();
     if(finger_id != -1){
       if(finger_id > num_control_id && finger_id <= user_id){
@@ -188,13 +186,13 @@ bool unsubscribe(){
         }
       }
       else
-        showLed(RED_LED,3,"Usuario de      control no borrado");
+        showLed(RED_LED,3,"Usuario de      control NO borrado");
     }
     else
-      showLed(RED_LED,3,"Usuario no borrado");
+      showLed(RED_LED,3,"Usuario         NO borrado");
   }
   else
-    showLed(RED_LED,5, "Error: No es    huella de control");
+    showLed(RED_LED,5, "ERROR:          NO es huella de control");
 }
 
 bool control(){
@@ -218,13 +216,13 @@ bool control(){
         showLed(RED_LED,3,"Clave Incorrecta");
     }
     else{
-      showLed(WHITE_LED,1,"Introduzca una huella de control");
+      showLed(WHITE_LED,1,"Introduzca una  huella de       control");
       if(isFingerControl()){
         correct_control = true;
-        showLed(GREEN_LED,3,"Huella de control Correcta");
+        showLed(GREEN_LED,3,"Huella de       control Correcta");
       }
       else
-        showLed(RED_LED,5, "Error: No es huella de control");
+      showLed(RED_LED,5, "ERROR:          NO es huella de control");
     }
     if(correct_control){
       if(option == 'A')
@@ -237,7 +235,38 @@ bool control(){
     reset();
 }
 
-bool reset(){}
+bool reset(){
+  showLed(GREEN_LED,5,"Identificar por 1)Huella        2)Clave Maestra");
+  char op = kpd.waitForKey();
+  if(op == '1'){
+    showLed(WHITE_LED,1,"Primera huella  de control");
+    if(isFingerControl()){
+      showLed(WHITE_LED,1,"Segunda huella  de control");
+      if(isFingerControl())
+        factoryReset();
+      else
+        showLed(RED_LED,5, "ERROR:          NO es huella de control");
+    }
+    else
+      showLed(RED_LED,5, "ERROR:          NO es huella de control");
+  }
+  else{
+    if(op == '2'){
+      showLed(GREEN_LED,3,"Inserta la      primera clave");
+      int16_t pass = getPassword();
+      if(pass == key_a){
+        showLed(GREEN_LED,3,"Inserta la      segunda clave");
+        pass = getPassword();
+        if(pass == key_b)
+          factoryReset();
+        else
+          showLed(RED_LED,5, "ERROR:          NO es Clave     Maestra");
+      }
+      else
+        showLed(RED_LED,5, "ERROR:          NO es Clave     Maestra");
+    }
+  }
+}
 
 void subscribe_control(){
   int16_t user_pass = 0;
@@ -267,15 +296,15 @@ void subscribe_control(){
         showLed(GREEN_LED,2,"Usuario agregado");
       }
       else
-        showLed(RED_LED,5,"Limite de usuarios de control");
+        showLed(RED_LED,5,"Limite de       usuarios de     control");
     }
   }
   else
-    showLed(RED_LED,2, "Error: Las huellas no coinciden");
+    showLed(RED_LED,2, "ERROR:          Las huellas NO  coinciden");
 }
 
 void unsubscribe_control(){
-  showLed(WHITE_LED,2,"Introduce huella a borrar");
+  showLed(WHITE_LED,3,"Introduzca una  huella a borrar");
   int finger_id = checkFingerID(); 
   if(finger_id != -1){ 
     if(finger_id >= 0 && finger_id <= control_id){ 
@@ -288,10 +317,10 @@ void unsubscribe_control(){
       }
     } 
     else 
-      showLed(RED_LED,3,"Usuario normal  no borrado"); 
+      showLed(RED_LED,3,"Usuario normal  NO borrado"); 
   }
   else 
-    showLed(RED_LED,3,"Usuario no borrado"); 
+    showLed(RED_LED,3,"Usuario NO      borrado"); 
 }
 
 uint8_t getFingerImage(){
@@ -309,14 +338,14 @@ uint8_t getFingerImage(){
 
 bool getFingerPrint(){
   uint8_t p;
-  showLed(GREEN_LED,4,"Pon el dedo en el sensor");
+  showLed(GREEN_LED,4,"Pon el dedo en  el sensor");
   p = getFingerImage();
   if(p == FINGERPRINT_OK){
     p = finger.image2Tz(1);
     if(p != FINGERPRINT_OK) return false;
-    showLed(GREEN_LED,2,"Huella correcta, retira el dedo");
+    showLed(GREEN_LED,2,"Huella correcta,retira el dedo");
     while(finger.getImage() != FINGERPRINT_NOFINGER);
-    showLed(GREEN_LED,4,"Vuelve a poner el dedo");
+    showLed(GREEN_LED,4,"Vuelve a poner  el dedo");
     p = getFingerImage();
     if(p == FINGERPRINT_OK){
       p = finger.image2Tz(2);
@@ -366,24 +395,24 @@ int16_t getPassword(){
 int16_t checkPassword(){
   int16_t pass = 0;
   int16_t pass2 = 0;
-  showLed(WHITE_LED,3,"Inserta una Clave");
+  showLed(WHITE_LED,3,"Inserta una     Clave");
   pass = getPassword();
   if(pass != -1){
     showLed(GREEN_LED,3,"Repite la Clave");
     pass2 = getPassword();
     if(pass2 != -1){
       if(pass == pass2){
-        showLed(GREEN_LED,3,"Las Claves son iguales");
+        showLed(GREEN_LED,3,"Las Claves son  iguales");
         return pass;
       }
       else
-          showLed(RED_LED,3,"ERROR: Las Claves no coinciden");
+          showLed(RED_LED,3,"ERROR:          Las Claves NO   coinciden");
     }
     else
-      showLed(RED_LED,3,"ERROR: Fallo al repetir Clave");
+      showLed(RED_LED,3,"ERROR:          Fallo al repetirClave");
   }
   else
-    showLed(RED_LED,3,"ERROR: Fallo al insertar Clave");
+    showLed(RED_LED,3,"ERROR:          Fallo al        insertar Clave");
   return -1;
 }
 
@@ -411,7 +440,7 @@ void checkAccess(){
     pass = pass*10 + EEPROM.read(id*4+1);
     pass = pass*10 + EEPROM.read(id*4+2);
     pass = pass*10 + EEPROM.read(id*4+3);
-    showLed(WHITE_LED,3,"Introduce tu clave");
+    showLed(WHITE_LED,3,"Introduce tu    clave");
     if(pass == getPassword() && pass != 0){
       digitalWrite(RELAY_PIN,LOW);
       showLed(GREEN_LED,3,"Acceso Permitido");
