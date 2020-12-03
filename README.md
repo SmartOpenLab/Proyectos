@@ -1,7 +1,8 @@
 # Proyectos
-Repositorio de proyectos de Smart Open Lab
+Project's Repository of [Smart Open Lab](www.smartopenlab.com)
 
-- Insoladora - Proyecto para fabricación de PCBs usando luz UV
-- IoT_WeightMeasure - Dispositivo de medición de peso basado en ESP8266
-- Cerradura Biométrica - Dispositivo de apertura y cierre basado en reconocimiento de huellas dactilares
-- ESP rfid keypad access - Dispositivo de apertura y cierre basado en RFID y contraseña
+- Insoladora - Two faces PCB insolator device using UV light
+- IoT_WeightMeasure - Weight measure device based on ESP8266
+- Cerradura Biométrica - IoT door lock device based on fingerprints
+- ESP rfid keypad access - IoT door lock device based on RFID and keyboard
+- OpenSoundMeter - IoT sound preassure meter device.
