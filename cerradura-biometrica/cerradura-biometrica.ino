@@ -126,9 +126,6 @@ void loop(){
       case 'C':
         control();
         break;
-      case 'D':
-        reset();
-        break;
       case '*':
         checkAccess();
         break;
