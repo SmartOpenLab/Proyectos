@@ -208,12 +208,7 @@ void subscribe_control(){
   else
     showLed(RED_LED,2, "Error: Las huellas no coinciden");
 }
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
->>>>>>> 542b761... Added Subscribe control user fuction
-=======
 void unsubscribe_control(){
   showLed(WHITE_LED,2,"Introduce huella a borrar");
   int finger_id = checkFingerID(); 
@@ -228,7 +223,6 @@ void unsubscribe_control(){
   else 
     showLed(RED_LED,3,"Usuario no borrado"); 
 }
->>>>>>> 4e4cc1d... Added Unsubscribe control user function
 
 uint8_t getFingerImage(){
   uint8_t p = -1;
