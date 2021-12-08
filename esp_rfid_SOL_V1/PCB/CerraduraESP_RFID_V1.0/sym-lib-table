@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name CerraduraESP_RFID_V01-rescue)(type Legacy)(uri ${KIPRJMOD}/CerraduraESP_RFID_V01-rescue.lib)(options "")(descr ""))
+  (lib (name CerraduraESP_RFID_V1.0-rescue)(type Legacy)(uri ${KIPRJMOD}/CerraduraESP_RFID_V1.0-rescue.lib)(options "")(descr ""))
+)
