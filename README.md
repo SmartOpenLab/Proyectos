@@ -1,5 +1,5 @@
 # Proyectos
-Project's Repository of [Smart Open Lab](www.smartopenlab.com)
+Project's Repository of [Smart Open Lab](http://www.smartopenlab.com)
 
 - Insoladora - Two faces PCB insolator device using UV light
 - IoT_WeightMeasure - Weight measure device based on ESP8266
