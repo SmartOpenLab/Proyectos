@@ -1,0 +1,69 @@
+#include "buzzer.esp"
+
+void ICACHE_FLASH_ATTR keypadloop() {
+if(deactivateKeypad&&!activateKeypad) {
+    static char respuesta [4]={'n','n','n','n'};
+    static int index =0;
+    bool equal=false;
+    tecla = kpd.getKey();  //Asignamos el valor devuelto por el teclado a la variable tecla
+   //Mostramos el valor por el monitor serie
+   if (tecla)
+   {
+     soundKey();
+     Serial.println(tecla);
+     previousKeypadMillis = currentMillis;
+     cooldown=millis()+10000;
+     respuesta[index]=tecla;
+     index++;
+     if (index>3){
+       for (int i=0;i<4;i++){
+         if (respuesta[i]==password[i]){
+            Serial.print(i);
+            Serial.print(" :Iguales;\t");
+            equal= true;
+          }
+          else{
+            Serial.print(i);
+            Serial.print(" :Diferentes, saliendo del bucle");
+            cooldown=millis()+2000;
+            equal=false;
+            break;
+          }
+        }
+        if (index>3&&equal){
+          Serial.print(" Password correcto");
+          soundSucces();
+          cooldown=millis()+activateTime+2000;
+          activateRelay=true;
+        }
+        Serial.println();
+        index=0;
+        memset(respuesta,'n',sizeof(respuesta));
+        previousKeypadMillis -= activateKeypadTime;
+      }
+   }
+   if(deactivateKeypad&& (currentMillis - previousKeypadMillis >= activateKeypadTime)){
+         #ifdef DEBUG
+         Serial.println(currentMillis);
+         Serial.println(previousKeypadMillis);
+         Serial.println("deactivate keypad after this");
+         Serial.print("Milis : ");
+         Serial.println(millis());
+         #endif
+         deactivateKeypad = false;
+         if (!equal) {
+            soundError();
+            deactivateRelay=true;
+            previousMillis-=activateTime;
+       }
+       index=0;
+       memset(respuesta,'n',sizeof(respuesta));
+       }
+
+
+ }
+}
+
+void ICACHE_FLASH_ATTR encendido(){
+  soundOn();
+}

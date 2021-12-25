@@ -1,0 +1,43 @@
+void playTone(long duration, int freq) {
+  pinMode(pinBuzzer, OUTPUT);
+  duration *= 1000;
+  int period = (1.0 / freq) * 1000000;
+  long elapsed_time = 0;
+  while (elapsed_time < duration) {
+    delayMicroseconds(period / 2);
+    digitalWrite(pinBuzzer, HIGH);
+    delayMicroseconds(period / 2);
+    digitalWrite(pinBuzzer, LOW);
+    elapsed_time += (period);
+  }
+  pinMode(pinBuzzer, INPUT);
+
+}
+
+void ICACHE_FLASH_ATTR soundKey() {
+  playTone(50, 440 * 8);
+}
+
+void ICACHE_FLASH_ATTR soundError() {
+    playTone(100, 440);
+    delay(50);
+    playTone(100, 330 );
+    delay(50);
+    playTone(500, 220 );
+
+}
+
+void ICACHE_FLASH_ATTR soundSucces() {
+      playTone(100, 440 * 6);
+      delay(50);
+      playTone(100, 440 * 8);
+      delay(50);
+      playTone(500, 440 * 10);
+}
+
+void ICACHE_FLASH_ATTR soundOn() {
+      playTone(100, 440 * 10);
+      delay(50);
+      playTone(100, 440 * 6);
+      delay(50);
+}
